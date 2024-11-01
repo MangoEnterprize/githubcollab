@@ -1,0 +1,38 @@
+# set FLASK_APP env var and FLASK_DEBUG
+# debug mode syncs on code change
+# templates is a flask convention, auto detected
+
+# decorator associates function with url
+# routes = views
+
+#save all files to reload changes
+
+#RUN FILE:
+    #python run.py 
+
+
+
+#See database inside python shell:
+from market import db, app
+app.app_context().push()
+>>> db.create_all()
+
+#from market.models import Item
+
+>>> from market import Item
+>>> item1 = Item(name="IPhone 10", price=500, barcode='1242353', desc="desc")
+ u1 = User(username='user', password_hash='1234', email_address='asd@gmail.com')
+>>> db.session.add(item1)
+>>> db.session.commit()
+>>> Item.query.all()
+
+for item in Item.query.filter_by()
+
+from market.models import db
+db.drop_all()
+
+db.session.rollback()
+rollback previous commits
+
+item1.owner = User.query.filter_by(username='user').first().id
+first gets user object
