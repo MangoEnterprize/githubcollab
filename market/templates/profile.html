@@ -1,0 +1,229 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Graduate Portal</title>
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='profile.css') }}">
+</head>
+<body>
+
+    <!-- Header Section -->
+    <header class="header">
+        <img src="{{ url_for('static', filename='icon.png') }}" alt="icon" class="resized-image">
+        <h1 class="header-title">Uni-Portal</h1>
+    </header>
+
+    <!-- Main Section -->
+    <section class="banner">
+        <h2>Personal Information</h2>
+    </section>
+
+    <!-- Content Section -->
+    <main class="content">
+        <!-- Left Column -->
+        <div class="column">
+            <!-- Major -->
+            <div class="section">
+                <h3>Major</h3>
+                <select>
+                    <option value="" disabled selected>Select Major</option>
+                    <option>Computer Science</option>
+                    <option>English</option>
+                    <option>Business Administration</option>
+                    <option>Psychology</option>
+                    <option>Biology</option>
+                    <option>Engineering</option>
+                    <option>Art</option>
+                    <option>History</option>
+                    <option>Mathematics</option>
+                </select>
+                <button>Submit</button>
+            </div>
+
+            <!-- Job Experience -->
+            <div class="section">
+                <h3>Job Experience</h3>
+                <p>Job 1:</p>
+                <label>Title:</label>
+                <input type="text" placeholder="Work">
+                <label>Description:</label>
+                <input type="text" placeholder="Work">
+                <label>Date started:</label>
+                <div class="select-group">
+                    <select>
+                        <option value="" disabled selected>Month</option>
+                        <option>January</option>
+                        <option>February</option>
+                        <option>March</option>
+                        <option>April</option>
+                        <option>May</option>
+                        <option>June</option>
+                        <option>July</option>
+                        <option>August</option>
+                        <option>September</option>
+                        <option>October</option>
+                        <option>November</option>
+                        <option>December</option>
+                    </select>
+                    <select>
+                        <option value="" disabled selected>Year</option>
+                        <!-- Add years as needed -->
+                        <option>2024</option>
+                        <option>2023</option>
+                        <option>2022</option>
+                        <option>2021</option>
+                        <option>2020</option>
+                        <option>2019</option>
+                        <option>2018</option>
+                        <option>2017</option>
+                        <option>2016</option>
+                        <option>2015</option>
+                        <option>2014</option>
+                        <option>2013</option>
+                        <option>2012</option>
+                    </select>
+                </div>
+                <label>Date Ended:</label>
+                <select>
+                    <option value="" disabled selected>Month</option>
+                    <option>January</option>
+                    <option>February</option>
+                    <option>March</option>
+                    <option>April</option>
+                    <option>May</option>
+                    <option>June</option>
+                    <option>July</option>
+                    <option>August</option>
+                    <option>September</option>
+                    <option>October</option>
+                    <option>November</option>
+                    <option>December</option>
+                </select>
+                <select>
+                    <option value="" disabled selected>Year</option>
+                        <!-- Add years as needed -->
+                        <option>2024</option>
+                        <option>2023</option>
+                        <option>2022</option>
+                        <option>2021</option>
+                        <option>2020</option>
+                        <option>2019</option>
+                        <option>2018</option>
+                        <option>2017</option>
+                        <option>2016</option>
+                        <option>2015</option>
+                        <option>2014</option>
+                        <option>2013</option>
+                        <option>2012</option>
+                </select>
+                <label>
+                    <input type="checkbox"> Still Working Here
+                </label>
+                <button>Submit</button>
+                <button type="button" class="add-job-button">Add another Job</button>
+            </div>
+            <!-- Linked to profile.js -->
+            <script src="profile.js"></script>
+        </div>
+
+        <!-- Right Column -->
+        <div class="column">
+            <!-- Concentration -->
+            <div class="section">
+                <h3>Concentration</h3>
+                <select>
+                    <option>English</option>
+                </select>
+                <button>Submit</button>
+            </div>
+
+            <!-- Graduation Year -->
+            <div class="section">
+                <h3>Graduation Year</h3>
+                <label>Month:</label>
+                <select>
+                    <option value="" disabled selected>Month</option>
+                    <option>January</option>
+                    <option>February</option>
+                    <option>March</option>
+                    <option>April</option>
+                    <option>May</option>
+                    <option>June</option>
+                    <option>July</option>
+                    <option>August</option>
+                    <option>September</option>
+                    <option>October</option>
+                    <option>November</option>
+                    <option>December</option>
+                </select>
+                <label>Year:</label>
+                <select>
+                    <option value="" disabled selected>Year</option>
+                        <!-- Add years as needed -->
+                        <option>2024</option>
+                        <option>2023</option>
+                        <option>2022</option>
+                        <option>2021</option>
+                        <option>2020</option>
+                        <option>2019</option>
+                        <option>2018</option>
+                        <option>2017</option>
+                        <option>2016</option>
+                        <option>2015</option>
+                        <option>2014</option>
+                        <option>2013</option>
+                        <option>2012</option>
+                </select>
+                <button>Submit</button>
+            </div>
+
+            <!-- Volunteer Work -->
+            <div class="section">
+                <h3>Volunteer Work</h3>
+                <label>Month:</label>
+                <select>
+                    <option value="" disabled selected>Month</option>
+                    <option>January</option>
+                    <option>February</option>
+                    <option>March</option>
+                    <option>April</option>
+                    <option>May</option>
+                    <option>June</option>
+                    <option>July</option>
+                    <option>August</option>
+                    <option>September</option>
+                    <option>October</option>
+                    <option>November</option>
+                    <option>December</option>
+                </select>
+                <label>Year:</label>
+                <select>
+                    <option value="" disabled selected>Year</option>
+                        <!-- Add years as needed -->
+                        <option>2024</option>
+                        <option>2023</option>
+                        <option>2022</option>
+                        <option>2021</option>
+                        <option>2020</option>
+                        <option>2019</option>
+                        <option>2018</option>
+                        <option>2017</option>
+                        <option>2016</option>
+                        <option>2015</option>
+                        <option>2014</option>
+                        <option>2013</option>
+                        <option>2012</option>
+                </select>
+                <label>Company:</label>
+                <input type="text" placeholder="Work">
+                <label>Description:</label>
+                <input type="text" placeholder="Work">
+                <button>Submit</button>
+                <button class="add-job">Add more Volunteer Work</button>
+            </div>
+        </div>
+    </main>
+
+</body>
+</html>

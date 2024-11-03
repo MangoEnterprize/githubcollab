@@ -7,10 +7,8 @@
 
 #save all files to reload changes
 
-#RUN FILE:
-    #python run.py 
 
-
+tutorial: modals, if request.method == post"
 
 #See database inside python shell:
 from market import db, app

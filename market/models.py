@@ -7,6 +7,8 @@ def load_user(user_id):
 
 # usermixin has premade auth function
 class User(db.Model, UserMixin):
+
+   
     # id is needed
     id = db.Column(db.Integer(), primary_key=True)
     username = db.Column(db.String(length=30), nullable=False, unique=True)
@@ -15,11 +17,16 @@ class User(db.Model, UserMixin):
     password_hash= db.Column(db.String(length=60), nullable=False)
     budget=db.Column(db.Integer(), nullable=False, default=1000)
 
+    # Personal info: major, job experience, concentration, graduation year, 
+    # major=db.Column(db.String(length=30), nullable=True)
+    # concentration=db.Column(db.String(length=30), nullable=True)
+    # gradyear=major=db.Column(db.Integer(), nullable=True)
+
     #define relationship between models
     #not stored as a column
     items = db.relationship('Item', backref='owned_user', lazy=True)
 
-    # additional attribute accessible form each instance
+    # additional attribute accessible from each instance
     @property
     def password(self):
         return self.password

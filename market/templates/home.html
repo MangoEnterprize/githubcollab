@@ -1,11 +1,93 @@
 {% extends 'base.html' %}
 
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    {% block head %}
 
-<!-- Pass vars into template via block -->
-{% block title %}
-Home page
-{% endblock %}
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Uni-Portal</title>
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='home.css') }}">
+    
+    {% endblock %}
+</head>
+<body>
 
-{% block content %}
-Homepage content
-{% endblock%}
+    {% block content %}
+    <!-- Header Section -->
+    <header>
+        <h1>Grad-Portal</h1>
+        <p>Sed ut perspiciatis unde omnis iste natus error sit voluptatem. Ut enim ad minima veniam, quis nostrum exercitationem ullam corporis suscipit laboriosam. Neque porro quisquam est, qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit.</p>
+    </header>
+
+    <!-- Navigation Menu -->
+    <nav>
+        <ul>
+            <li><a href="#home">Home</a></li>
+            <li><a href="#about">About</a></li>
+            <li><a href="#contact">Contact</a></li>
+        </ul>
+    </nav>
+
+    <!-- Main Content Section -->
+    <main>
+        <section id="Overview">
+            <h2>Home</h2>
+            <img src="{{ url_for('static', filename='icon.png') }}" alt="icon" class="resized-image">
+        
+        </section>
+
+        <section id="contact">
+            <h2>Contact</h2>
+            <p>Provide contact information or a contact form here.</p>
+        </section>
+
+        <!-- Featured Content Section -->
+        <div class="container">
+            <section class="featured">
+                <div class="card">
+                    <h3>Reviews</h3>
+                    <p>Short Review.</p>
+                </div>
+                <div class="card">
+                    <h3>Reviews</h3>
+                    <p>Short Review.</p>
+                </div>
+                <div class="card">
+                    <h3>Reviews</h3>
+                    <p>Short Review.</p>
+                </div>
+            </section>
+        </div>
+         <!-- Start of Uni-Portal Section -->
+    <div class="container">
+        <div class="header">Uni-Portal</div>
+        <div class="content">
+            <div class="left-section">
+                <h1>Start your journey now….</h1>
+                <p>One place for all of your solution.</p>
+                <div class="buttons">
+                    <button class="button signin">Sign in</button>
+                    <button class="button register">Register</button>
+                </div>
+            </div>
+            <div class="image-section">
+                <img src="student.png" alt="Student">
+            </div>
+        </div>
+    </div>
+    <!-- End of Uni-Portal Section -->
+        
+       
+    </main>
+
+    
+
+    <!-- Footer Section -->
+    <footer>
+        <p>&copy; 2024 Uni-Portal. All rights reserved.</p>
+    </footer>
+    {% endblock%}
+</body>
+</html>

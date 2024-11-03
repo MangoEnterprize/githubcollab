@@ -17,6 +17,9 @@ db = SQLAlchemy(app)
 # store passworsd as hash in db
 bcrypt=Bcrypt(app)
 login_manager=LoginManager(app)
+# redirects users to login page when trying to visit a page that requires authentrification
+login_manager.login_view="login_page"
+login_manager.login_message_category="info"
 
 # must come at end or causes circular imports with importing app in run.py
 from market import routes
