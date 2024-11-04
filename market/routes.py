@@ -16,11 +16,11 @@ def home_page():
 def about_page(username):
     return f'<h1>This is the about page of {username}</h1>'
 
-@app.route('/market')
+@app.route('/jobs')
 @login_required
 def market_page():
     items = Item.query.all()
-    return render_template('market.html', items=items)
+    return render_template('home.html', items=items)
 
 @app.route('/job')
 def jobs_page():
@@ -45,7 +45,7 @@ def register_page():
         flash(f'Account created, logged as: {user_to_create.username}', category='success')
             
 
-        return redirect(url_for('market_page'))
+        return redirect(url_for('home_page'))
     
     if form.errors: #if no errors from validation
         for error in form.errors.values():

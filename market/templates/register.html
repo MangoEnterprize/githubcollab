@@ -23,7 +23,7 @@
         .header {
             width: 100%;
             background-color: #437644;
-            color: white;
+            color: beige;
             text-align: center;
             padding: 30px 0;
             font-size: 2.5em;
@@ -78,19 +78,26 @@
             background-color: #8a3535;
         }
 
-        /* Already Have Account Section */
-        .account-text {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            margin-top: 15px;
+        /* Already Have Account Button */
+        .account-button {
+            display: inline-block;
+            text-align: center;
+            width: 100%;
+            padding: 10px;
             font-size: 0.9em;
             color: white;
             background-color: #333;
-            padding: 10px;
             border-radius: 5px;
             cursor: pointer;
+            margin-top: 15px;
             box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+            text-decoration: none;
+            font-weight: bold;
+            transition: background-color 0.3s;
+        }
+
+        .account-button:hover {
+            background-color: #555;
         }
     </style>
 </head>
@@ -110,11 +117,12 @@
             <input type="password" placeholder="Password">
             
             <!-- Create Account Button -->
-            <button class="button">Create Account</button>
+            <a href="{{ url_for('profile_page') }}"> <button class="button">Create account</button> </a>
+            
         </div>
         
-        <!-- Already Have an Account Section -->
-        <div class="account-text">Already have an account?</div>
+        <!-- Already Have an Account Button -->
+        <a href="{{ url_for('login_page') }}"> <button class="account-button">Already have an account?</button> </a>
     </div>
 
 </body>

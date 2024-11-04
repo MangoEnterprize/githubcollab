@@ -1,0 +1,57 @@
+{% extends 'base.html' %}
+
+{% block head %}
+<meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Job</title>
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='job.css') }}">
+
+{% endblock %}
+
+{% block content %}
+<header>
+    <h3>Uni-Portal</h3>
+    <nav>
+        <ul>
+            <li><a href="job.html">Profile</a></li>
+            <li><a href="job.html">Search</a></li>
+            <li><a href="job.html">Tutoring</a></li>
+        </ul>
+    </nav>
+
+</header>
+
+<main>
+       
+    <section class="title">
+        <div class="scholarship-search">
+            <p>Job Search</p>
+        </div>
+        <div class="image-container">
+            <img src="{{ url_for('static', filename='icon.png') }}" alt="icon" class="resized-image">
+        </div>
+    </section>
+
+    <section>
+        <form class="radio-button">
+        
+            <button class="sort-by">Sort By</button>
+            
+            <div class="radio-group">
+                <!-- <div class="radio-item">
+                    <input type="radio" value="Location" name="options">
+                    <label>Location</label>
+                </div> -->
+                <div class="radio-item">
+                    <input type="radio" value="On-campus" name="options">
+                    <label>On-campus</label>
+                </div>
+                <div class="radio-item">
+                    <input type="radio" value="Off-campus" name="options">
+                    <label>Off-campus</label>
+                </div>
+            </div>
+        </form>
+    </section>
+</main>
+{% endblock %}

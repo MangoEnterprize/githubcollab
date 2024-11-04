@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Sign In</title>
+    <title>Uni-Portal</title>
     <style>
         /* General Styles */
         body {
@@ -16,6 +16,11 @@
             background-color: #f5f5f5;
         }
 
+        .title {
+            font-size: 20px;
+            color: #333;
+            margin: top left;
+        }
         /* Container Styles */
         .container {
             width: 100%;
@@ -26,14 +31,27 @@
             overflow: hidden;
         }
 
+        .logo {
+            height: 24px;
+            width: auto;
+            margin-right: 8px;
+        }
+
         /* Header Styles */
-        .header {
+        .portal-title {
             background-color: #437644;
             color: white;
             text-align: center;
             padding: 20px 0;
             font-size: 2em;
             font-weight: bold;
+        }
+
+        .header {
+            position: fixed;
+            top: 20px;
+            left: 20px;
+            z-index: 10;
         }
 
         /* Form Section */
@@ -45,13 +63,13 @@
         }
 
         /* Input Fields */
-        .input-group {
+        .input-group, .form-control {
             display: flex;
             gap: 10px;
         }
 
-        .input-group input[type="text"],
-        .input-group input[type="password"] {
+        .form-control, .input-group input[type="text"],
+        .form-control, .input-group input[type="password"] {
             width: 100%;
             padding: 10px;
             font-size: 1em;
@@ -60,7 +78,7 @@
             background-color: #f0f0f0;
         }
 
-        .input-group input::placeholder {
+        .form-control::placeholder, .input-group input::placeholder {
             color: #aaa;
         }
 
@@ -89,6 +107,7 @@
         .button.signup {
             background-color: #a53f3f;
             margin-top: 10px;
+            background-color: #333;
         }
 
         .button.signup:hover {
@@ -104,24 +123,35 @@
 </head>
 <body>
 
+    
+    <a href="{{ url_for('home_page') }}" class="header">
+            <h1 class="title">Uni-Portal</h1>
+    </a>
+
     <div class="container">
         <!-- Header Section -->
-        <div class="header">Sign In</div>
+        <div class="portal-title">Sign In</div>
         
         <!-- Form Section -->
-        <div class="form">
+
+        <form method="POST" class="form-signin form" style="color:white">
+            {{ form.hidden_tag() }}
+            <!-- generate secure token for form -->
             <div class="input-group">
-                <input type="text" placeholder="Username">
-                <input type="password" placeholder="Password">
-            </div>
+            {{form.username(class="form-control", placeholder="Username")}}
             
-            <!-- Login Button -->
-            <button class="button login">Log In</button>
-            
-            <!-- Account Text and Signup Button -->
-            <p class="account-text">Don't have an account?</p>
-            <button class="button signup">Sign Up</button>
+            {{form.password(class="form-control", placeholder="Password")}}
         </div>
+            {{ form.submit(class="button login")}}
+
+            <div class="checkbox mb-3">
+                <p class="account-text">Don't have an account?</p>
+                <a href="{{ url_for('register_page') }}"><button type="button" class="button signup">Sign Up</button></a> 
+            </div>
+           
+        </form>
+        
+        
     </div>
 
 </body>

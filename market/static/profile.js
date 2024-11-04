@@ -1,61 +1,57 @@
-document.getElementById('add-job-button').addEventListener('click', addJobEntry);
+// Add event listener to the 'Add another Job' button
+document.querySelector('.add-job').addEventListener('click', function() {
+    // Get the job experience container
+    const jobExperienceContainer = document.getElementById('job-experience-container');
 
-function addJobEntry() {
-    // Select the job experience section
-    const jobExperienceSection = document.getElementById('job-experience-section');
-    
-    // Create a new job entry
-    const newJobEntry = document.createElement('div');
-    newJobEntry.classList.add('job-entry');
-    
-    newJobEntry.innerHTML = `
-        <label>Title:</label>
-        <input type="text" placeholder="Job Title" name="title[]">
-        
-        <label>Description:</label>
-        <input type="text" placeholder="Job Description" name="description[]">
-        
-        <label>Date started:</label>
-        <select name="start-month[]">
-            <option value="" disabled selected>Month</option>
-            <option>January</option>
-            <option>February</option>
-            <option>March</option>
-            <!-- ... more months ... -->
-        </select>
-        <select name="start-year[]">
-            <option value="" disabled selected>Year</option>
-            <option>2024</option>
-            <option>2023</option>
-            <!-- ... more years ... -->
-        </select>
-        
-        <label>Date ended:</label>
-        <select name="end-month[]">
-            <option value="" disabled selected>Month</option>
-            <option>January</option>
-            <option>February</option>
-            <option>March</option>
-            <!-- ... more months ... -->
-        </select>
-        <select name="end-year[]">
-            <option value="" disabled selected>Year</option>
-            <option>2024</option>
-            <option>2023</option>
-            <!-- ... more years ... -->
-        </select>
-        
-        <label>
-            <input type="checkbox" name="still-working[]"> Still Working Here
-        </label>
-        <button type="button" class="remove-job">Remove Job</button>
-    `;
-    
-    // Append the new job entry to the section
-    jobExperienceSection.appendChild(newJobEntry);
+    // Clone the first job experience div
+    const newJobExperience = jobExperienceContainer.querySelector('.job-experience').cloneNode(true);
 
-    // Add event listener to the "Remove Job" button
-    newJobEntry.querySelector('.remove-job').addEventListener('click', function() {
-        jobExperienceSection.removeChild(newJobEntry);
+    // Clear the input fields in the cloned job experience
+    const inputs = newJobExperience.querySelectorAll('input[type="text"]');
+    inputs.forEach(input => input.value = '');
+
+    // Reset any selected options in the dropdowns
+    const selects = newJobExperience.querySelectorAll('select');
+    selects.forEach(select => {
+        select.selectedIndex = 0; // Set to the first option (disabled selected)
     });
-}
+
+    // Append the new job experience to the container
+    jobExperienceContainer.appendChild(newJobExperience);
+
+    // Create a spacer element
+    const spacer = document.createElement('div');
+    spacer.style.height = '20px'; // Adjust the height for spacing
+    jobExperienceContainer.appendChild(spacer); // Insert the spacer after the new job experience
+});
+
+fetch('/submit-job-experience', {
+    method: 'POST',
+    headers: {
+        'Content-Type': 'application/json',
+    },
+    body: JSON.stringify(jobExperiences),
+})
+.then(response => response.json())
+.then(data => {
+    console.log('Success:', data);
+})
+.catch((error) => {
+    console.error('Error:', error);
+});
+
+fetch('/submit-major', {
+    method: 'POST',
+    headers: {
+        'Content-Type': 'application/json',
+    },
+    body: JSON.stringify(selectedMajor),
+})
+.then(response => response.json())
+.then(data => {
+    console.log('Success:', data);
+})
+.catch((error) => {
+    console.error('Error:', error);
+});
+
