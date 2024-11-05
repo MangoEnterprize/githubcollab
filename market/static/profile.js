@@ -55,3 +55,21 @@ fetch('/submit-major', {
     console.error('Error:', error);
 });
 
+document.addEventListener("DOMContentLoaded", function() {
+    // Select the button and volunteer work section
+    const addVolunteerButton = document.querySelector(".add-volunteer");
+    const volunteerWorkSection = document.querySelector(".volunteer-section");
+
+    // Function to duplicate the volunteer work section
+    addVolunteerButton.addEventListener("click", function() {
+        const newVolunteerWork = volunteerWorkSection.cloneNode(true);
+        // Optionally clear input fields
+        newVolunteerWork.querySelectorAll("input, select").forEach(input => input.value = "");
+
+        // Insert a space or margin for the new section
+        newVolunteerWork.style.marginTop = "20px";
+
+        // Insert the new volunteer work section after the last one
+        volunteerWorkSection.parentNode.appendChild(newVolunteerWork);
+    });
+});

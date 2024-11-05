@@ -46,7 +46,7 @@
         .form input[type="text"],
         .form input[type="email"],
         .form input[type="password"] {
-            width: 100%;
+            
             padding: 12px;
             margin-top: 10px;
             font-size: 1em;
@@ -108,21 +108,32 @@
 
     <!-- Form Container -->
     <div class="container">
+
         <div class="form">
+
+            <form method="POST" class="form-register" style="color:white">
+                {{ form.hidden_tag() }}
+                <!-- generate secure token for form -->
+                {{form.username(class="form-control", placeholder="Username")}}
+                {{form.email_address(class="form-control", placeholder="Student Email")}}
+                {{form.password1(class="form-control", placeholder="Password")}}
+                {{form.password2(class="form-control", placeholder="Confirm password")}}
+                
+                 <!-- Create Account Button -->
+                {{ form.submit(class="button", value="Create Account")}}
+               
+            </form>
+
+
             <!-- Input Fields for Registration Form -->
             <input type="text" placeholder="First Name">
             <input type="text" placeholder="Last Name">
-            <input type="email" placeholder="Student Email">
-            <input type="text" placeholder="Username">
-            <input type="password" placeholder="Password">
             
-            <!-- Create Account Button -->
-            <a href="{{ url_for('profile_page') }}"> <button class="button">Create account</button> </a>
-            
+           
         </div>
         
         <!-- Already Have an Account Button -->
-        <a href="{{ url_for('login_page') }}"> <button class="account-button">Already have an account?</button> </a>
+        <a href="{{ url_for('login_page') }}"> <button  type="button"  class="account-button">Already have an account?</button> </a>
     </div>
 
 </body>

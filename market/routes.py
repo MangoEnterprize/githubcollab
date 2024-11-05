@@ -12,9 +12,9 @@ def home_page():
     return render_template('home.html')
 
 # dynamic route takes username
-@app.route('/about/<username>')
+@app.route('/about')
 def about_page(username):
-    return f'<h1>This is the about page of {username}</h1>'
+    return f'<h1>This is the about page of username</h1>'
 
 @app.route('/jobs')
 @login_required
@@ -29,6 +29,10 @@ def jobs_page():
 @app.route('/profile')
 def profile_page():
     return render_template('profile.html')
+
+@app.route('/dashboard')
+def dashboard_page():
+    return render_template('dashboard.html')
 
 @app.route('/register', methods=['GET', 'POST'])
 def register_page():

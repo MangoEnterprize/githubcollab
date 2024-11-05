@@ -139,16 +139,24 @@
             <!-- Concentration -->
             <div class="section">
                 <h3>Concentration</h3>
-                <select required>
-                    <option>English</option>
-                </select>
-                <button>Submit</button>
+                <form id="job-experience-form">
+                    <select required>
+                        <option value="" disabled selected>Select...</option>
+                        <option>African and African American Studies</option>
+                        <option>Anthropology</option>
+                        <option>Applied Math</option>
+                        <option>English</option>
+                        <option>English</option>
+                    </select>
+                    <button>Submit</button>
+                </form>
             </div>
 
             <!-- Graduation Year -->
             <div class="section">
                 <h3>Graduation Year</h3>
                 <label>Month:</label>
+                <form id="job-experience-form">
                 <select required>
                     <option value="" disabled selected>Month</option>
                     <option>January</option>
@@ -183,12 +191,14 @@
                         <option>2012</option>
                 </select>
                 <button type="submit">Submit</button>
+            </form>
             </div>
 
             <!-- Volunteer Work -->
-            <div class="section">
+            <div class="section volunteer-section">
                 <h3>Volunteer Work</h3>
                 <label>Month:</label>
+                <form id="job-experience-form">
                 <select required>
                     <option value="" disabled selected>Month</option>
                     <option>January</option>
@@ -223,13 +233,15 @@
                         <option>2012</option>
                 </select>
                 <label>Company:</label>
-                <input type="text" placeholder="Work">
+                <input required type="text" placeholder="Work">
                 <label>Description:</label>
-                <input type="text" placeholder="Work">
+                <input type="text" placeholder="Work Description">
                 <button>Submit</button>
-                <button class="add-job">Add more Volunteer Work</button>
+                <button type="button" class="add-volunteer">Add more Volunteer Work</button>
             </div>
+        </form>
         </div>
+        <script src="profile.js"></script>
     </main>
     <script>
         document.querySelector('.add-job').addEventListener('click', function() {
