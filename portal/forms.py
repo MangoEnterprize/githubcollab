@@ -1,7 +1,7 @@
 from flask_wtf import FlaskForm
-from wtforms import StringField, PasswordField, SubmitField
+from wtforms import StringField, PasswordField, SubmitField, EmailField
 from wtforms.validators import Length, EqualTo, Email, DataRequired, ValidationError
-from market.models import User
+from portal.models import User
 
 class RegisterForm(FlaskForm):
 
@@ -20,7 +20,7 @@ class RegisterForm(FlaskForm):
     # username = StringField(label='Username', validators=[Length(min=2, max=30), DataRequired()])
     firstname = StringField(label="First Name", validators=[Length(min=3, max=30),DataRequired()])
     lastname = StringField(label="Last Name", validators=[Length(min=3, max=30),DataRequired()])
-    email_address = StringField(label='Email', validators=[Email(), DataRequired()])
+    email_address = EmailField(label='Email', validators=[Email(), DataRequired()])
     password1 = PasswordField(label='Password1', validators=[Length(min=6, max=30), DataRequired()])
     password2 = PasswordField(label='Password2', validators=[EqualTo('password1'), DataRequired()])
     submit = SubmitField(label='Submit')
@@ -29,6 +29,27 @@ class RegisterForm(FlaskForm):
 
 class LoginForm(FlaskForm):
     # username = StringField(label='Username', validators=[DataRequired()])
-    email_address = StringField(label='Email', validators=[Email(), DataRequired()])
+    email_address = EmailField(label='Email', validators=[Email(), DataRequired()])
     password = PasswordField(label='Password', validators=[DataRequired()])
     submit = SubmitField(label='Sign in')
+
+class ProfileForm(FlaskForm):
+    # no validators needed, users can only submit via dropdowns
+    major = StringField(label="Major")
+    concentration = StringField(label="Major")
+    gradmonth = StringField(label="Graduation Month")
+    gradyear = StringField(label="Graduation Year")
+
+    # job experience
+    # title
+    # desc
+    # month start
+    # year start
+    # date end
+    # month end
+
+    # volunteer work
+    # month
+    # year
+    # company
+    # description

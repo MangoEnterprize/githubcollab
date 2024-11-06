@@ -120,14 +120,14 @@
 <div class="sidebar">
     <h2>Your Profile</h2>
     <a href="#edit-profile">Edit Profile</a>
-    <!-- KEEP THIS URL SO USER CAN LOGOUT -->
+    <!-- added logout url to logout user -->
     <a href="{{ url_for('logout_page') }}">Logout</a>
 </div>
 
 <div class="container">
     <div class="header">
         <p>Student Dashboard</p>
-        <h1>Welcome, [username]</h1>
+        <h1>Welcome, {{current_user.firstname}}</h1>
     </div>
 
     <div class="grid">

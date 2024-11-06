@@ -20,7 +20,7 @@ tutorial: modals, if request.method == post"
 ```
 ```python
     #Import database and app context
-    from market import db, app
+    from portal import db, app
     app.app_context().push()
     
     #Delete database
@@ -30,12 +30,11 @@ tutorial: modals, if request.method == post"
     db.create_all()
 
     # Create objects
-    from market.models import Item, User
-    item1 = Item(name="IPhone 10", price=500, barcode='1242353', desc="desc")
-    u1 = User(username='user', password_hash='1234', email_address='asd@gmail.com')
+    from portal.models import  User
+    u1 = User(firstname='Lillian', lastname="Chen", password_hash='1234', email_address='lchen45@uncc.edu')
     
     # Add item ansd save database
-    db.session.add(item1)
+    db.session.add(u1)
     db.session.commit()
 
     #View items
@@ -49,7 +48,7 @@ tutorial: modals, if request.method == post"
     item1.owner = User.query.filter_by(username='user').first().id
 
     # Rollback db
-    from market.models import db
+    from portal.models import db
     db.session.rollback()
 ```
 

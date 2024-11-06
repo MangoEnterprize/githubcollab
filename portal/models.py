@@ -1,6 +1,8 @@
-from market import db, bcrypt, login_manager
+from portal import db, bcrypt, login_manager
 from flask_login import UserMixin
 
+
+# gets id of current session user, allows you to access current_user variable inside routes 
 @login_manager.user_loader
 def load_user(user_id):
     return User.query.get(int(user_id))
@@ -16,16 +18,16 @@ class User(db.Model, UserMixin):
     email_address=db.Column(db.String(length=50), nullable=True, unique=True)
     #store passwords as hash
     password_hash= db.Column(db.String(length=60), nullable=False)
-    budget=db.Column(db.Integer(), nullable=False, default=1000)
 
-    # Personal info: major, job experience, concentration, graduation year, 
-    # major=db.Column(db.String(length=30), nullable=True)
-    # concentration=db.Column(db.String(length=30), nullable=True)
-    # gradyear=major=db.Column(db.Integer(), nullable=True)
-
+    #profile details
+    major=db.Column(db.String(length=30), nullable=True)
+    concentration=db.Column(db.String(length=30), nullable=True)
+    gradmonth=db.Column(db.Integer(), nullable=True)
+    gradyear=db.Column(db.Integer(), nullable=True)
+    
     #define relationship between models
     #not stored as a column
-    # items = db.relationship('Item', backref='owned_user', lazy=True)
+    # profile = db.relationship('Profile', backref='user_id', lazy=True)
 
     # additional attribute accessible from each instance
     @property
@@ -41,16 +43,13 @@ class User(db.Model, UserMixin):
         return bcrypt.check_password_hash(self.password_hash, attempted_password)
             
 
-class Item(db.Model):
-    id = db.Column(db.Integer(), primary_key=True)
-    name = db.Column(db.String(length=30), nullable=False, unique=True)
-    price = db.Column(db.Integer(), nullable=False)
-    barcode = db.Column(db.String(length=4), nullable=False, unique=True)
-    desc = db.Column(db.String(1024), nullable=False)
+# class Profile(db.Model):
+#      #foreign key
+#     id = db.Column(db.Integer(),  primary_key=True)
 
-    #foreign key
-    # owner=db.Column(db.Integer(), db.ForeignKey('user.id'))
+    
+#     user_id = db.Column(db.Integer, db.ForeignKey('user.id'))
 
-    def __repr__(self):
-        return f'Item{self.name}'
+#     def __repr__(self):
+#         return f'Profile{self.name}'
 

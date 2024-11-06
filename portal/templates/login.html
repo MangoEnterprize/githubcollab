@@ -3,12 +3,52 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css" integrity="sha384-TX8t27EcRE3e/ihU7zmQxVncDAy5uIKz4rEkgIXeMed4M0jlfIDPvg6uqKI2xXr2" crossorigin="anonymous"> -->
+    
     <title>Uni-Portal</title>
     <style>
+
+.alert-info {
+    color: #0c5460;
+    background-color: #d1ecf1;
+    border-color: #bee5eb;
+}
+
+.alert > button{
+    background-color: transparent;
+    border: 0px;
+    padding: auto auto;
+}
+.alert-danger {
+        
+        color: #721c24;
+        background-color: #f8d7da;
+        border-color: #f5c6cb;
+    }
+    .alert {
+        position: relative;
+        padding: .75rem 1.25rem;
+        margin-bottom: 1rem;
+        border: 1px solid transparent;
+        border-radius: .25rem;
+    }
+    [type=button]:not(:disabled), [type=reset]:not(:disabled), [type=submit]:not(:disabled), button:not(:disabled) {
+    cursor: pointer;
+}
+.close {
+    float: right;
+    font-size: 1.5rem;
+    font-weight: 700;
+    line-height: 1;
+    color: #000;
+    text-shadow: 0 1px 0 #fff;
+    opacity: .5;
+}
         /* General Styles */
         body {
             font-family: Arial, sans-serif;
             display: flex;
+            flex-direction: column;
             justify-content: center;
             align-items: center;
             height: 100vh;
@@ -65,13 +105,12 @@
         /* Input Fields */
         .input-group, .form-control {
             display: flex;
+            flex-direction: column;
             gap: 10px;
         }
 
-        .form-control, .input-group input[type="text"],
-        .form-control, .input-group input[type="password"] {
-            width: 100%;
-            padding: 10px;
+        .form-control {
+            padding: 10px; 
             font-size: 1em;
             border: 1px solid #ddd;
             border-radius: 5px;
@@ -123,14 +162,35 @@
 </head>
 <body>
 
-    
-    <a href="{{ url_for('home_page') }}" class="header">
+    <div>
+        <a href="{{ url_for('home_page') }}" class="header">
             <h1 class="title">Uni-Portal</h1>
     </a>
 
+
+  <!-- Messages section handles error and success messages -->
+  {%with messages = get_flashed_messages(with_categories=true)%}
+  {% if messages %}
+    {% for category, message in messages %}
+    <div class="alert alert-{{ category }}">
+    <button type="button" class="m1-2 mb1 close" data-dismiss="alert" aria-label="Close">
+      <span aria-hidden="true">&times;</span>
+    </button>
+    {{message}}
+  </div>
+    {% endfor %}
+  {% endif %}
+  {% endwith %}
+ 
+    </div>
+    
+   
+
+
+
     <div class="container">
         <!-- Header Section -->
-        <div class="portal-title">Sign In</div>
+        <div class="portal-title">Login</div>
         
         <!-- Form Section -->
 
@@ -146,7 +206,7 @@
 
             <div class="checkbox mb-3">
                 <p class="account-text">Don't have an account?</p>
-                <a href="{{ url_for('register_page') }}"><button type="button" class="button signup">Sign Up</button></a> 
+                <a href="{{ url_for('register_page') }}"><button type="button" class="button signup">Register</button></a> 
             </div>
            
         </form>
@@ -155,4 +215,8 @@
     </div>
 
 </body>
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js" integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js" integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV" crossorigin="anonymous"></script>
+
 </html>
