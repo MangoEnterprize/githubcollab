@@ -8,10 +8,11 @@ def load_user(user_id):
 # usermixin has premade auth function
 class User(db.Model, UserMixin):
 
-   
+    # Validate by unique username
     # id is needed
     id = db.Column(db.Integer(), primary_key=True)
-    username = db.Column(db.String(length=30), nullable=False, unique=True)
+    firstname = db.Column(db.String(length=30), nullable=False, unique=False)
+    lastname = db.Column(db.String(length=30), nullable=False, unique=False)
     email_address=db.Column(db.String(length=50), nullable=True, unique=True)
     #store passwords as hash
     password_hash= db.Column(db.String(length=60), nullable=False)
@@ -24,7 +25,7 @@ class User(db.Model, UserMixin):
 
     #define relationship between models
     #not stored as a column
-    items = db.relationship('Item', backref='owned_user', lazy=True)
+    # items = db.relationship('Item', backref='owned_user', lazy=True)
 
     # additional attribute accessible from each instance
     @property
@@ -48,7 +49,7 @@ class Item(db.Model):
     desc = db.Column(db.String(1024), nullable=False)
 
     #foreign key
-    owner=db.Column(db.Integer(), db.ForeignKey('user.id'))
+    # owner=db.Column(db.Integer(), db.ForeignKey('user.id'))
 
     def __repr__(self):
         return f'Item{self.name}'

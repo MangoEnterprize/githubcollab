@@ -38,7 +38,8 @@ def dashboard_page():
 def register_page():
     form = RegisterForm()
     if form.validate_on_submit():
-        user_to_create = User(username=form.username.data, 
+        user_to_create = User(firstname=form.firstname.data,
+                              lastname=form.lastname.data, 
                               email_address=form.email_address.data,
                               password=form.password1.data)
         db.session.add(user_to_create)
@@ -46,7 +47,7 @@ def register_page():
 
         # login registered user
         login_user(user_to_create)
-        flash(f'Account created, logged as: {user_to_create.username}', category='success')
+        flash(f'Account created, logged as: {user_to_create.firstname}', category='success')
             
 
         return redirect(url_for('home_page'))
@@ -61,12 +62,12 @@ def login_page():
     form = LoginForm()
     if form.validate_on_submit():
         # verify user exists and password correct
-        attemptedUser = User.query.filter_by(username=form.username.data).first()
+        attemptedUser = User.query.filter_by(email_address=form.email_address.data).first()
         if attemptedUser and attemptedUser.check_password_correction(
             attempted_password=form.password.data
         ): 
             login_user(attemptedUser)
-            flash(f'Success, login as: {attemptedUser.username}', category='success')
+            flash(f'Success, login as: {attemptedUser.firstname}', category='success')
             return redirect(url_for('market_page'))
         else:
             flash("Failed login", category='danger')

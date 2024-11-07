@@ -33,8 +33,8 @@
 
         /* Container for Form */
         .container {
-            width: 100%;
-            max-width: 500px;
+            
+            max-width: 400px;
             background-color: white;
             padding: 20px;
             box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
@@ -43,11 +43,10 @@
         }
 
         /* Input Fields */
-        .form input[type="text"],
-        .form input[type="email"],
-        .form input[type="password"] {
-            
-            padding: 12px;
+        /* width and padding percent must sum to 100% */
+        input {
+            padding: 12px 5%;
+            width: 90%;
             margin-top: 10px;
             font-size: 1em;
             border: 1px solid #ddd;
@@ -55,7 +54,7 @@
             background-color: #f0f0f0;
         }
 
-        .form input::placeholder {
+        input::placeholder {
             color: #aaa;
         }
 
@@ -109,12 +108,14 @@
     <!-- Form Container -->
     <div class="container">
 
-        <div class="form">
+        <!-- <div class="form"> -->
 
             <form method="POST" class="form-register" style="color:white">
-                {{ form.hidden_tag() }}
                 <!-- generate secure token for form -->
-                {{form.username(class="form-control", placeholder="Username")}}
+                {{ form.hidden_tag() }}
+                
+                {{form.firstname(class="form-control", placeholder="First Name")}}
+                {{form.lastname(class="form-control", placeholder="Last Name")}}
                 {{form.email_address(class="form-control", placeholder="Student Email")}}
                 {{form.password1(class="form-control", placeholder="Password")}}
                 {{form.password2(class="form-control", placeholder="Confirm password")}}
@@ -130,7 +131,7 @@
             <input type="text" placeholder="Last Name">
             
            
-        </div>
+        <!-- </div> -->
         
         <!-- Already Have an Account Button -->
         <a href="{{ url_for('login_page') }}"> <button  type="button"  class="account-button">Already have an account?</button> </a>

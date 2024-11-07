@@ -120,7 +120,8 @@
 <div class="sidebar">
     <h2>Your Profile</h2>
     <a href="#edit-profile">Edit Profile</a>
-    <a href="#logout">Logout</a>
+    <!-- KEEP THIS URL SO USER CAN LOGOUT -->
+    <a href="{{ url_for('logout_page') }}">Logout</a>
 </div>
 
 <div class="container">
