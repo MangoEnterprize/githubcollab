@@ -55,21 +55,29 @@ fetch('/submit-major', {
     console.error('Error:', error);
 });
 
-document.addEventListener("DOMContentLoaded", function() {
-    // Select the button and volunteer work section
-    const addVolunteerButton = document.querySelector(".add-volunteer");
-    const volunteerWorkSection = document.querySelector(".volunteer-section");
+// Add event listener to the 'Add more Volunteer Work' button
+document.querySelector('.add-volunteer').addEventListener('click', function() {
+    // Get the volunteer work container
+    const volunteerWorkContainer = document.getElementById('volunteer-work-container');
 
-    // Function to duplicate the volunteer work section
-    addVolunteerButton.addEventListener("click", function() {
-        const newVolunteerWork = volunteerWorkSection.cloneNode(true);
-        // Optionally clear input fields
-        newVolunteerWork.querySelectorAll("input, select").forEach(input => input.value = "");
+    // Clone the first volunteer work div
+    const newVolunteerWork = volunteerWorkContainer.querySelector('.volunteer-work').cloneNode(true);
 
-        // Insert a space or margin for the new section
-        newVolunteerWork.style.marginTop = "20px";
+    // Clear the input fields in the cloned volunteer work
+    const inputs = newVolunteerWork.querySelectorAll('input[type="text"]');
+    inputs.forEach(input => input.value = '');
 
-        // Insert the new volunteer work section after the last one
-        volunteerWorkSection.parentNode.appendChild(newVolunteerWork);
+    // Reset any selected options in the dropdowns
+    const selects = newVolunteerWork.querySelectorAll('select');
+    selects.forEach(select => {
+        select.selectedIndex = 0; // Set to the first option (disabled selected)
     });
+
+    // Append the new volunteer work to the container
+    volunteerWorkContainer.appendChild(newVolunteerWork);
+
+    // Create a spacer element
+    const spacer = document.createElement('div');
+    spacer.style.height = '20px'; // Adjust the height for spacing
+    volunteerWorkContainer.appendChild(spacer); // Insert the spacer after the new volunteer work
 });

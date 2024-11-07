@@ -1,4 +1,4 @@
-body {
+/* body {
     background-color: #212121;
     color: white;
     padding: 20px;
@@ -35,33 +35,94 @@ footer {
     padding: 20px;
     border-radius: 5px;
     box-shadow: 0 4px 8px rgba(0,0,0,0.1);
-}
+} */
 
-/* nav bar */
-/* .navbar{
+/* 
+.navbar{
     list-style: none;
     display: flex;
-    justify-content: center;
-    gap:1rem;
-    font-size: 15px;
+    justify-content: space-around;
+    padding:0;
+    margin:0;
 }
-.navbar-nav{
 
+.navbar-nav{
+    list-style: none;
+    display: flex;
+    flex-wrap: wrap;
+}
+.nav-item{
+    margin-right: 20px;
 }
 
 .nav-link{
     text-decoration: none;
-    color:rgb(255, 255, 255);
+    color:black;
 }
 
 .nav-link:hover{
     color:rgb(134, 128, 128);
 }
 
-.navbar-nav li{
-    font-weight: 10px;
-    width: 10%;
+.navbar-brand{
+
+    text-decoration: none;
+    color:black;
 } */
+
+
+
+.navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 20px;
+  }
+  
+  .navbar-brand {
+    font-size: 1.5em;
+    font-weight: bold;
+    color: #333; /* Dark color for the brand name */
+    text-decoration: none; /* Remove underline */
+  }
+  
+  .navbar-nav {
+    display: flex;
+    list-style: none; /* Remove bullet points */
+    padding-left: 0; /* Remove default padding */
+    margin: 0;
+  }
+  
+  .nav-item {
+    margin-left: 20px; /* Space between each item */
+  }
+  
+  .nav-link {
+    color: #007bff; /* Bootstrap blue color */
+    text-decoration: none; /* Remove underline from links */
+    font-size: 1em;
+    font-weight: 500;
+  }
+  
+  .nav-link:hover {
+    color: #0056b3; /* Darken color on hover */
+    text-decoration: underline; /* Add underline on hover */
+  }
+  
+  .ml-auto {
+    margin-left: auto; /* Push items to the right (e.g., Login/Register links) */
+  }
+
+
+  footer {
+    width: 100%;
+    padding: 1rem 2rem;
+    text-align: center;
+    font-size: 0.9rem;
+    color: #999;
+    border-top: 1px solid #ddd;
+}
+  
 
 
 

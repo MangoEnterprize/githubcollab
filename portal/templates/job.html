@@ -5,6 +5,7 @@
 <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Job</title>
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='base.css') }}">
     <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='job.css') }}">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -17,7 +18,7 @@
 
 {% block content %}
 
-<header>
+<!-- <header>
     <h3>Uni-Portal</h3>
     <nav>
         <ul>
@@ -27,11 +28,11 @@
         </ul>
     </nav>
 
-</header>
+</header> -->
 
 <main>
        
-    <section class="title">
+    <section class="banner">
         <div class="job-search">
             <p>Job Search</p>
         </div>
@@ -164,13 +165,6 @@
 
 
 </main>
-
-<footer>
-
-
-    <small>Copyright</small>
-
-</footer> 
 
 
 

@@ -9,6 +9,7 @@ from flask_login import login_user, logout_user, login_required, current_user
 @app.route('/') 
 @app.route('/home')
 def home_page():
+    
     return render_template('home.html')
 
 # dynamic route takes username
@@ -30,7 +31,7 @@ def jobs_page():
 @app.route('/profile', methods=['GET', 'POST'])
 @login_required
 def profile_page():
-
+    majors = ['Computer Science', 'English', 'Business Administration', 'Psychology', 'Biology', 'Engineering', 'Art', 'History', 'Mathematics']
     form = ProfileForm()
     user = User.query.filter_by(id=current_user.id).first()
     #   User.query.get_or_404(current_user.id)
@@ -38,9 +39,9 @@ def profile_page():
     # Update information
     if form.validate_on_submit():
         user.major=form.major.data
-        user.concentration=form.concentration.data
-        user.gradmonth=form.gradmonth.data
-        user.gradyear=form.gradyear.data
+        # user.concentration=form.concentration.data
+        # user.gradmonth=form.gradmonth.data
+        # user.gradyear=form.gradyear.data
         
         db.session.commit()
 
@@ -51,7 +52,7 @@ def profile_page():
         for error in form.errors.values():
             flash(f'Error during submission: {error[0]}', category='danger')
     
-    return render_template('profile.html', form=form)
+    return render_template('profile.html', form=form, majors=majors)
 
 # User must be logged in to access dashboard
 @app.route('/dashboard')
@@ -92,8 +93,8 @@ def login_page():
             attempted_password=form.password.data
         ): 
             login_user(attemptedUser)
-            flash(f'Success, login as: {attemptedUser.firstname}', category='success')
-            return redirect(url_for('portal_page'))
+            flash(f'Success, logged in as: {attemptedUser.firstname}', category='success')
+            return redirect(url_for('dashboard_page'))
         else:
             flash("Failed login", category='danger')
     return render_template('login.html', form=form)
