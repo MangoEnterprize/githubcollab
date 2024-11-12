@@ -27,7 +27,7 @@ class User(db.Model, UserMixin):
     
     #define relationship between models
     #not stored as a column
-    # profile = db.relationship('Profile', backref='user_id', lazy=True)
+    # exp = db.relationship('Experience', backref='user_id', lazy=True)
 
     # additional attribute accessible from each instance
     @property
@@ -43,13 +43,18 @@ class User(db.Model, UserMixin):
         return bcrypt.check_password_hash(self.password_hash, attempted_password)
             
 
-# class Profile(db.Model):
-#      #foreign key
-#     id = db.Column(db.Integer(),  primary_key=True)
+# store job experience and volunteer experience
+class Experience(db.Model):
+    # title, desc, company, date
+    id = db.Column(db.Integer(),  primary_key=True)
+    title=db.Column(db.String(length=30), nullable=True)
+    company=db.Column(db.String(length=30), nullable=True)
+    desc=db.Column(db.String(length=250), nullable=True)
 
+    month=db.Column(db.Integer(), nullable=True)
+    year=db.Column(db.Integer(), nullable=True)
     
-#     user_id = db.Column(db.Integer, db.ForeignKey('user.id'))
+    user_id = db.Column(db.Integer, db.ForeignKey('user.id'), nullable=False)
 
-#     def __repr__(self):
-#         return f'Profile{self.name}'
-
+    def __repr__(self):
+        return f'Profile{self.name}'

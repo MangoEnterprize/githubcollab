@@ -31,6 +31,18 @@ body {
     color: #aaa;
 }
 
+/* header nav */
+
+.nav-link{
+    text-decoration: none;
+    color: #aaa;
+}
+
+.nav-link:hover{
+    text-decoration: none;
+    color:#4f4949;
+}
+
 /* Banner Section */
 .banner {
     background-color: #3AB74E;

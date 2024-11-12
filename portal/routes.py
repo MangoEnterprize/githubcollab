@@ -1,9 +1,10 @@
 from portal import app
 from flask import render_template, redirect, url_for, flash, get_flashed_messages
 from portal.models import  User
-from portal.forms import RegisterForm, LoginForm, ProfileForm
+from portal.forms import RegisterForm, LoginForm, ProfileForm, ExperienceForm
 from portal import db
 from flask_login import login_user, logout_user, login_required, current_user
+import calendar
 
 # this is root url, can handle mulriple decorators
 @app.route('/') 
@@ -13,9 +14,15 @@ def home_page():
     return render_template('home.html')
 
 # dynamic route takes username
-@app.route('/about')
+# TODO:needs to take logged in username
+@app.route('/about/<username>')
 def about_page(username):
-    return f'<h1>This is the about page of username</h1>'
+    return f'<h1>This is the about page of {username}</h1>'
+
+@app.route('/scholarship')
+def scholarship_page():
+    return render_template('scholarship.html')
+
 
 @app.route('/jobs')
 @login_required
@@ -32,12 +39,18 @@ def jobs_page():
 @login_required
 def profile_page():
     majors = ['Computer Science', 'English', 'Business Administration', 'Psychology', 'Biology', 'Engineering', 'Art', 'History', 'Mathematics']
+    years = [ 2013, 2014, 2015, 2016, 2017, 2018, 2019, 2020, 2021, 2022, 2023, 2024]
+    months = list(calendar.month_name)[1:]
+
     form = ProfileForm()
+    form2 = ExperienceForm()
     user = User.query.filter_by(id=current_user.id).first()
     #   User.query.get_or_404(current_user.id)
 
     # Update information
     if form.validate_on_submit():
+
+        # distinguish by which form is submitted
         user.major=form.major.data
         # user.concentration=form.concentration.data
         # user.gradmonth=form.gradmonth.data
@@ -52,7 +65,7 @@ def profile_page():
         for error in form.errors.values():
             flash(f'Error during submission: {error[0]}', category='danger')
     
-    return render_template('profile.html', form=form, majors=majors)
+    return render_template('profile.html', form=form, majors=majors, form2=form2, years=years, months=months)
 
 # User must be logged in to access dashboard
 @app.route('/dashboard')

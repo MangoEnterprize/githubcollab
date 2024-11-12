@@ -18,11 +18,9 @@
             <li><a href="job.html">Tutoring</a></li>
         </ul>
     </nav>
-
 </header>
 
 <main>
-       
     <section class="title">
         <div class="scholarship-search">
             <p>Job Search</p>
@@ -34,14 +32,8 @@
 
     <section>
         <form class="radio-button">
-        
             <button class="sort-by">Sort By</button>
-            
             <div class="radio-group">
-                <!-- <div class="radio-item">
-                    <input type="radio" value="Location" name="options">
-                    <label>Location</label>
-                </div> -->
                 <div class="radio-item">
                     <input type="radio" value="On-campus" name="options">
                     <label>On-campus</label>
@@ -52,6 +44,20 @@
                 </div>
             </div>
         </form>
+    </section>
+
+    <section class="jobs-grid">
+        <h1>Scholarships</h1>
+        <div class="job-cards">
+            {% for job in jobs %}
+            <div class="job-card">
+                <div class="job-image-placeholder"></div>
+                <h3>{{ job.title }}</h3>
+                <p>{{ job.description }}</p>
+                <button class="apply-button">Apply</button>
+            </div>
+            {% endfor %}
+        </div>
     </section>
 </main>
 {% endblock %}

@@ -70,7 +70,12 @@ footer {
     color:black;
 } */
 
-
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: Arial, sans-serif;
+}
 
 .navbar {
     display: flex;
@@ -106,7 +111,7 @@ footer {
   
   .nav-link:hover {
     color: #0056b3; /* Darken color on hover */
-    text-decoration: underline; /* Add underline on hover */
+    text-decoration: none; /* Add underline on hover */
   }
   
   .ml-auto {

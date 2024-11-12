@@ -1,5 +1,5 @@
 from flask_wtf import FlaskForm
-from wtforms import StringField, PasswordField, SubmitField, EmailField
+from wtforms import StringField, PasswordField, SubmitField, EmailField, IntegerField
 from wtforms.validators import Length, EqualTo, Email, DataRequired, ValidationError
 from portal.models import User
 
@@ -40,16 +40,10 @@ class ProfileForm(FlaskForm):
     gradmonth = StringField(label="Graduation Month")
     gradyear = StringField(label="Graduation Year")
 
-    # job experience
-    # title
-    # desc
-    # month start
-    # year start
-    # date end
-    # month end
-
-    # volunteer work
-    # month
-    # year
-    # company
-    # description
+class ExperienceForm(FlaskForm):
+    # title, desc, month, year
+    title = StringField(label="Title")
+    desc = StringField(label="Desc")
+    company = StringField(label="Company")
+    month = StringField(label="Month")
+    year = IntegerField(label="Year")

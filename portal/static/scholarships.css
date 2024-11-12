@@ -1,11 +1,11 @@
 *{
-    /* box-sizing: border-box; */
+    box-sizing: border-box;
     width: 100%;
     background-color: #ffffff;
-    /* margin: 0;
-    padding: 0; */
-    /* font-family: "Kaisei HarunoUmi", "Kaisei HarunoUmi Placeholder", serif;
-    font-style: normal; */
+    margin: 0;
+    padding: 0;
+    font-family: "Kaisei HarunoUmi", "Kaisei HarunoUmi Placeholder", serif;
+    font-style: normal;
 }
 
 /* header h3{
@@ -42,10 +42,103 @@ header{
     justify-content: space-around;
     font-size: 20px;
 } */
+/* General styling */
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+}
+
+header h3 {
+    font-size: 24px;
+    margin: 20px;
+}
+
+nav ul {
+    list-style: none;
+    padding: 0;
+    display: flex;
+    gap: 20px;
+}
+
+nav ul li a {
+    text-decoration: none;
+    color: black;
+}
+
+.title p {
+    font-size: 24px;
+    font-weight: bold;
+}
+
+.image-container img {
+    width: 50px;
+    height: 50px;
+}
+
+/* Job Grid Styling */
+.jobs-grid {
+    max-width: 1200px;
+    margin: 40px auto;
+    padding: 0 20px;
+    text-align: center;
+}
+
+.jobs-grid h1 {
+    font-size: 36px;
+    font-weight: bold;
+    margin-bottom: 20px;
+}
+
+.job-cards {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 20px;
+}
+
+.job-card {
+    background-color: #f9f9f9;
+    border-radius: 10px;
+    padding: 20px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    text-align: left;
+}
+
+.job-image-placeholder {
+    background-color: #e0e0e0;
+    height: 100px;
+    border-radius: 10px;
+    margin-bottom: 15px;
+}
+
+.job-card h3 {
+    font-size: 18px;
+    margin: 10px 0;
+}
+
+.job-card p {
+    font-size: 14px;
+    color: #666;
+    margin-bottom: 15px;
+}
+
+.apply-button {
+    background-color: black;
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 14px;
+}
+
+.apply-button:hover {
+    background-color: #333;
+}
 
 
 .banner{
-    /* height: auto;
+    height: auto;
     display: flex; 
     flex-direction: column;
     justify-content: space-around;
@@ -55,14 +148,11 @@ header{
     align-content: center;
     flex-wrap: nowrap;
     gap: 60;
-    border-radius: 0px 0px 0px 0px; */
-    background-color: #3AB74E;
-    text-align: center;
-    padding: 30px 0;
+    border-radius: 0px 0px 0px 0px;
 }
 
-.banner p{
-    /* height: 258px;
+.job-search{
+    height: 258px;
     display: flex;
     flex-direction: column;
     align-content: center;
@@ -73,11 +163,7 @@ header{
     overflow: visible;
     flex-wrap: nowrap;
     gap: 0;
-    border-radius: 0px 0px 0px 0px; */
-    background-color: #3AB74E;
-    color: #fff;
-    font-size: 2em;
-    font-weight: bold;
+    border-radius: 0px 0px 0px 0px;
 }
 
 
@@ -100,7 +186,7 @@ header{
 }
 
 .resized-image{
-    width: 50%;
+    width: 90%;
     height: auto;
 }  
 
@@ -167,7 +253,7 @@ header{
     font-weight: 400;
     font-style: normal;
     color: #000000;
-    font-size: 3.5em;
+    font-size: 113px;
     letter-spacing: 0em;
     line-height: 1.2;
 }
@@ -180,7 +266,7 @@ header{
     font-weight: 400;
     font-style: normal;
     color: #000000;
-    font-size: 2.5em;
+    font-size: 63px;
     letter-spacing: 0em;
     line-height: 1.2;
 }
