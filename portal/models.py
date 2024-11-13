@@ -47,12 +47,15 @@ class User(db.Model, UserMixin):
 class Experience(db.Model):
     # title, desc, company, date
     id = db.Column(db.Integer(),  primary_key=True)
-    title=db.Column(db.String(length=30), nullable=True)
+    title=db.Column(db.String(length=30), nullable=False)
     company=db.Column(db.String(length=30), nullable=True)
     desc=db.Column(db.String(length=250), nullable=True)
 
-    month=db.Column(db.Integer(), nullable=True)
-    year=db.Column(db.Integer(), nullable=True)
+    monthstart=db.Column(db.Integer(), nullable=True)
+    yearstart=db.Column(db.Integer(), nullable=True)
+
+    monthend=db.Column(db.Integer(), nullable=True)
+    yearend=db.Column(db.Integer(), nullable=True)
     
     user_id = db.Column(db.Integer, db.ForeignKey('user.id'), nullable=False)
 

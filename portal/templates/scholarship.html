@@ -1,63 +1,79 @@
-{% extends 'base.html' %}
-
-{% block head %}
-<meta charset="UTF-8">
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Job</title>
-    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='job.css') }}">
+    <title>Scholarships</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
 
-{% endblock %}
-
-{% block content %}
-<header>
-    <h3>Uni-Portal</h3>
-    <nav>
-        <ul>
-            <li><a href="job.html">Profile</a></li>
-            <li><a href="job.html">Search</a></li>
-            <li><a href="job.html">Tutoring</a></li>
-        </ul>
-    </nav>
-</header>
-
-<main>
-    <section class="title">
-        <div class="scholarship-search">
-            <p>Job Search</p>
-        </div>
-        <div class="image-container">
-            <img src="{{ url_for('static', filename='icon.png') }}" alt="icon" class="resized-image">
-        </div>
-    </section>
-
-    <section>
-        <form class="radio-button">
-            <button class="sort-by">Sort By</button>
-            <div class="radio-group">
-                <div class="radio-item">
-                    <input type="radio" value="On-campus" name="options">
-                    <label>On-campus</label>
-                </div>
-                <div class="radio-item">
-                    <input type="radio" value="Off-campus" name="options">
-                    <label>Off-campus</label>
-                </div>
-            </div>
-        </form>
-    </section>
-
-    <section class="jobs-grid">
+    <!-- Header Section -->
+    <header class="header">
         <h1>Scholarships</h1>
-        <div class="job-cards">
-            {% for job in jobs %}
-            <div class="job-card">
-                <div class="job-image-placeholder"></div>
-                <h3>{{ job.title }}</h3>
-                <p>{{ job.description }}</p>
-                <button class="apply-button">Apply</button>
-            </div>
-            {% endfor %}
+    </header>
+
+    <!-- Banner Image -->
+    <section class="banner">
+        <img src="icon.png" alt="Scholarship Icon" class="banner-image">
+    </section>
+
+    <!-- Filter Section -->
+    <section class="filter-section">
+        <button class="sort-button">Sort By</button>
+        <div class="filters">
+            <label><input type="checkbox"> University</label>
+            <label><input type="checkbox"> Private Scholarships</label>
+            <label><input type="checkbox"> Grant-based Aid</label>
         </div>
     </section>
-</main>
-{% endblock %}
+
+    <!-- Scholarships Section -->
+    <section class="scholarships">
+        <h2>Scholarships</h2>
+        <div class="scholarship-cards">
+            <div class="card">
+                <h3>Job 1</h3>
+                <p>Learn about hosting suites for scale and stability.</p>
+                <button>Apply</button>
+            </div>
+            <div class="card">
+                <h3>Job 2</h3>
+                <p>Learn how finance can optimize your site for search engines.</p>
+                <button>Apply</button>
+            </div>
+            <div class="card">
+                <h3>Job 3</h3>
+                <p>Get training in key blogs, job openings, and more advice.</p>
+                <button>Apply</button>
+            </div>
+            <div class="card">
+                <h3>Job 4</h3>
+                <p>Learn about hosting suites for scale and stability.</p>
+                <button>Apply</button>
+            </div>
+            <div class="card">
+                <h3>Optimize for SEO</h3>
+                <p>Learn how finance can optimize your site for search engines.</p>
+                <button>Apply</button>
+            </div>
+            <div class="card">
+                <h3>CMS Examples</h3>
+                <p>Get training in key blogs, job openings, and more advice.</p>
+                <button>Apply</button>
+            </div>
+            <div class="card">
+                <h3>Scaling Your Site</h3>
+                <p>Learn about hosting suites for scale and stability.</p>
+                <button>Apply</button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <p>Copyright</p>
+    </footer>
+
+</body>
+</html>

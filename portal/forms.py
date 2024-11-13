@@ -42,8 +42,9 @@ class ProfileForm(FlaskForm):
 
 class ExperienceForm(FlaskForm):
     # title, desc, month, year
-    title = StringField(label="Title")
-    desc = StringField(label="Desc")
+    title = StringField(label="Title" ,validators=[DataRequired()])
+    desc = StringField(label="Desc",validators=[DataRequired()])
     company = StringField(label="Company")
     month = StringField(label="Month")
-    year = IntegerField(label="Year")
+    year = IntegerField(label="Year",validators=[DataRequired()])
+    

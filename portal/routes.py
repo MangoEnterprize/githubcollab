@@ -1,6 +1,6 @@
 from portal import app
-from flask import render_template, redirect, url_for, flash, get_flashed_messages
-from portal.models import  User
+from flask import request, render_template, redirect, url_for, flash, get_flashed_messages
+from portal.models import  User, Experience
 from portal.forms import RegisterForm, LoginForm, ProfileForm, ExperienceForm
 from portal import db
 from flask_login import login_user, logout_user, login_required, current_user
@@ -15,9 +15,9 @@ def home_page():
 
 # dynamic route takes username
 # TODO:needs to take logged in username
-@app.route('/about/<username>')
-def about_page(username):
-    return f'<h1>This is the about page of {username}</h1>'
+@app.route('/about')
+def about_page():
+    return f'<h1>This is the about page of user</h1>'
 
 @app.route('/scholarship')
 def scholarship_page():
@@ -47,10 +47,27 @@ def profile_page():
     user = User.query.filter_by(id=current_user.id).first()
     #   User.query.get_or_404(current_user.id)
 
-    # Update information
-    if form.validate_on_submit():
+    # distinguish by which form is submitted
+    # create new job experience object
+    if form2.validate_on_submit() and 'job' in  request.form:
+        # iterate through multiple jobs
+        print(form2.title.data+"/n")
+        print(form2.desc.data+"/n")
+        print(user.id+"/n")
+        print(form2['yearstart'])
+        new_exp = Experience(title=form2.title.data,
+                            desc=form2.desc.data,
+                            user_id = user.id,
+                            yearstart = form2['yearstart']
+                            )
+        db.session.add(new_exp)
+        db.session.commit()
 
-        # distinguish by which form is submitted
+        flash(f'New experience added to profile', category='success')
+        return redirect(url_for('dashboard_page'))
+
+    # Update information
+    if form.validate_on_submit() and 'major' in request.form:
         user.major=form.major.data
         # user.concentration=form.concentration.data
         # user.gradmonth=form.gradmonth.data

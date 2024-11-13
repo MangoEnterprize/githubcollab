@@ -124,6 +124,10 @@ button:hover {
     background-color: #555;
 }
 
+.hidden{
+    display: none;
+}
+
 .job-entry {
     border: 1px solid #ccc;
     padding: 10px;

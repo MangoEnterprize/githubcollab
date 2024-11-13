@@ -24,14 +24,16 @@
         <!-- Content Section -->
         <main class="content">
             <!-- Left Column -->
+
             <div class="column">
+                <form method="POST" id="major-form">
                 <!-- Major -->
                 <div class="section">
                     <h3>Major</h3>
-                    <form method="POST" id="major-form">
+                    <!-- <form method="POST" id="major-form"> -->
                         <!-- generate secure token for form -->
                         {{ form.hidden_tag() }}
-                    
+                        
                         <select required name="major">
                             {% if current_user.major != None %}
                                 <option value="{{ current_user.major }}" disabled selected>{{current_user.major}}</option>
@@ -45,64 +47,68 @@
                             {% endfor %}
 
                         </select>
-                        <button type="submit">Submit</button>
-                    </form>
+                        <button type="submit" name="major">Submit</button>
+                    <!-- </form> -->
                 </div>
 
                 <!-- Job Experience Container -->
                 <div class="section" id="job-experience-container">
                     <h3>Job Experience</h3>
                     
-                    <form method="POST" id="job-experience-form">
+                    <!-- <form method="POST" id="job-experience-form"> -->
                         {{ form.hidden_tag() }}
                         <div class="job-experience">
                             <label>Title:</label>
-                            <input type="text" placeholder="Work">
+                            {{ form2.title(placeholder="Work") }}
                             
                             <label>Description:</label>
-                            <input type="text" placeholder="Work">
+                            {{ form2.desc(placeholder="Work") }}
 
                             <label>Date started:</label>
                             <div class="select-group">
-                                <select required>
+                                <select name="monthstart">
                                     <option value="" disabled selected>Month</option>
                                     {% for month in months %}
                                         <option value="{{ month }}">{{ month }}</option>
                                     {% endfor %}
                                 </select>
-                                <select required>
+                                <select name="yearstart" required>
                                     <option value="" disabled selected>Year</option>
                                     {% for year in years %}
                                         <option value="{{ year }}">{{ year }}</option>
                                     {% endfor %}
                                 </select>
                             </div>
+                            <div class="jobend">
                             <label>Date Ended:</label>
-                            <select required>
-                                <option value="" disabled selected>Month</option>
+                            
+                            <select>
+                                <option value="monthend" disabled selected>Month</option>
                                 {% for month in months %}
                                     <option value="{{ month }}">{{ month }}</option>
                                 {% endfor %}
                             </select>
-                            <select required>
+                            <select value="yearend">
                                 <option value="" disabled selected>Year</option>
                                 <!-- Add years as needed -->
                                 {% for year in years %}
                                         <option value="{{ year }}">{{ year }}</option>
                                 {% endfor %}
                             </select>
+                        </div>
                             <label>
-                                <input type="checkbox"> Still Working Here
+                                <input type="checkbox" class="checkbox"> Still Working Here
                             </label>
-                            <button type="submit">Submit</button>
+                            <button type="submit" name="job">Submit</button>
                         </div>
                     
+                        
                     <button type="button" class="add-job">Add another Job</button>
                     <!-- Linked to profile.js -->
                     <script src="profile.js"></script>
                     </form>
                 </div>
-
+                </div>  
                 <!-- Right Column -->
                 <div class="column">
                     <!-- Concentration -->
@@ -212,8 +218,25 @@
                     </form>
                 </div>
             </div>
+            </div>
         </main>
         <script>
+            const checkbox = document.querySelector(".checkbox");
+            const jobend = document.querySelector(".jobend");
+
+            checkbox.addEventListener('click', e=>{
+                if (checkbox.checked) {
+                // Checkbox is checked
+                // hide end date
+                jobend.classList.add('hidden');
+                
+                } else {
+                    jobend.classList.remove('hidden');
+                }
+
+            })
+            
+
             document.querySelector('.add-job').addEventListener('click', function() {
                 // Get the job experience container
                 const jobExperienceContainer = document.getElementById('job-experience-container');
