@@ -64,10 +64,11 @@ def profile_page():
         db.session.commit()
 
         flash(f'New experience added to profile', category='success')
-        return redirect(url_for('dashboard_page'))
+        # return redirect(url_for('dashboard_page'))
 
     # Update information
     if form.validate_on_submit() and 'major' in request.form:
+        print(request.form)
         user.major=form.major.data
         # user.concentration=form.concentration.data
         # user.gradmonth=form.gradmonth.data
@@ -76,7 +77,7 @@ def profile_page():
         db.session.commit()
 
         flash(f'Profile updated successfully', category='success')
-        return redirect(url_for('dashboard_page'))
+        # return redirect(url_for('dashboard_page'))
     
     if form.errors: #if no errors from validation
         for error in form.errors.values():
