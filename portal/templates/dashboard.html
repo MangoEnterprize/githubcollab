@@ -1,0 +1,237 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard</title>
+    <style>
+        
+.alert-info {
+    color: #0c5460;
+    background-color: #d1ecf1;
+    border-color: #bee5eb;
+}
+
+.alert > button{
+    background-color: transparent;
+    border: 0px;
+    padding: auto auto;
+}
+.alert-danger {
+        
+        color: #721c24;
+        background-color: #f8d7da;
+        border-color: #f5c6cb;
+    }
+
+    .alert-success {
+        
+        color: #1f721c;
+        background-color: #d7f8e0;
+        border-color: #c6f5d0;
+    }
+    .alert {
+        position: relative;
+        padding: .75rem 1.25rem;
+        margin-bottom: 1rem;
+        border: 1px solid transparent;
+        border-radius: .25rem;
+    }
+    [type=button]:not(:disabled), [type=reset]:not(:disabled), [type=submit]:not(:disabled), button:not(:disabled) {
+    cursor: pointer;
+}
+.close {
+    float: right;
+    font-size: 1.5rem;
+    font-weight: 700;
+    line-height: 1;
+    color: #000;
+    text-shadow: 0 1px 0 #fff;
+    opacity: .5;
+}
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f8f8f8;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+        }
+
+        .sidebar {
+            width: 250px;
+            background-color: #fff;
+            color: #333;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+            padding-top: 20px;
+            position: fixed;
+            height: 100%;
+            top: 0;
+            left: 0;
+        }
+
+        .sidebar h2 {
+            font-size: 1.5rem;
+            margin-bottom: 10px;
+        }
+
+        .sidebar p {
+            font-size: 1.0rem;
+            margin-bottom: 40px;
+            text-wrap: balance;
+        }
+        
+        .sidebar hr {
+            width: 80%;
+            border: none;
+            border-top: 1px solid #ccc;
+            margin: 10px 0;
+        }
+
+        .container {
+            text-align: center;
+            margin-left: 250px;
+            padding: 40px;
+            width: calc(100%-250px);
+        }
+
+        .header {
+            margin-bottom: 20px;
+        }
+
+        .header h1 {
+            font-size: 2.5rem;
+            color: #1a1a1a;
+            margin-bottom: 10px;
+        }
+
+        .header p {
+            font-size: 1rem;
+            color: #6c757d;
+        }
+
+        .grid {
+            display: flex;
+            gap: 20px;
+            justify-content: center;
+            margin-top: 30px;
+        }
+
+
+        .box-button {
+            width: 30%;
+            height: 150px;
+            background-color: #eaeaea;
+            border-radius: 10px;
+            justify-content: center;
+            align-items: center;
+            display: flex;
+            text-decoration: none;
+            color: #333;
+            font-size: 1.2rem;
+            font-weight: bold;
+            transition: background-color 0.3s, transform 0.2s;
+            background-image: repeating-linear-gradient(
+                45deg,
+                #ffffff,
+                #ffffff 10px,
+                #eaeaea 10px,
+                #eaeaea 20px
+            );
+        }
+
+        .box-button:hover {
+            background-color: #d0d0d0;
+            transform: scale(1.05);
+        }
+
+        .content {
+            display: flex;
+            gap: 20px;
+            justify-content: center;
+            margin-top: 30px;
+        }
+
+        .content .section {
+            width: 45%;
+            text-align: left;
+        }
+
+        .content .section h2 {
+            font-size: 1.25rem;
+            color: #1a1a1a;
+            margin-bottom: 10px;
+        }
+
+        .content .section p {
+            font-size: 0.875rem;
+            color: #6c757d;
+            line-height: 1.5;
+        }
+    </style>
+</head>
+<body>
+
+<div class="sidebar">
+    <h2>Your Profile</h2>
+    <hr>
+    <p>Your major is: {{ current_user.major }}</p>
+    <p>Your concentration is: {{ current_user.concentration }}</p>
+    <p>Your expected graduation is: {{ current_user.gradmonth }} {{current_user.gradyear}}</p>
+    <p>Your experiences: {{experiences}}</p>
+    <a href="{{ url_for('profile_page') }}">Edit Profile</a>
+    <!-- added logout url to logout user -->
+    <a href="{{ url_for('logout_page') }}">Logout</a>
+    
+</div>
+
+<div class="container">
+    {%with messages = get_flashed_messages(with_categories=true)%}
+      {% if messages %}
+        {% for category, message in messages %}
+        <div class="alert alert-{{ category }}">
+        <button type="button" class="m1-2 mb1 close" data-dismiss="alert" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+        {{message}}
+      </div>
+        {% endfor %}
+      {% endif %}
+    {% endwith %}
+    <div class="header">
+        <p>Student Dashboard</p>
+        <h1>Welcome, {{current_user.firstname}}</h1>
+
+        <!-- Messages section handles error and success messages -->
+      
+    </div>
+
+    <div class="grid">
+        <a href="{{ url_for('jobs_page') }}" class="box-button">Jobs</a>
+        <a href="{{ url_for('scholarship_page') }}" class="box-button">Scholarships</a>
+        <a href="#feature3" class="box-button">Tutoring</a> 
+    </div>
+
+    <div class="content">
+        <div class="section">
+            <p>Search for jobs and internships</p>
+        </div>
+        <div class="section">
+            <p>Search for scholarships</p>
+        </div>
+        <div class="section">
+            <p>Schedule a tutoring session</p>
+    </div>
+</div>
+
+</body>
+</html>

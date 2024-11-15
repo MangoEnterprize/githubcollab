@@ -1,0 +1,89 @@
+{
+    "jobs": [
+      {
+        "job_id": "1",
+        "title": "Web Designer",
+        "company": "CreativeTech Solutions",
+        "location": "San Francisco, CA",
+        "employment_type": "Full-Time",
+        "description": "Seeking a web designer with experience in UI/UX and responsive design. Must be proficient in HTML, CSS, and JavaScript.",
+        "skills": [
+          "HTML",
+          "CSS",
+          "JavaScript",
+          "Responsive Design",
+          "UI/UX"
+        ],
+        "salary": "75000-90000",
+        "apply_url": "https://creativetechsolutions.com/jobs/web-designer"
+      },
+      {
+        "job_id": "2",
+        "title": "Front-End Web Developer",
+        "company": "Web Innovators Inc.",
+        "location": "Remote",
+        "employment_type": "Full-Time",
+        "description": "Looking for a talented front-end developer with expertise in React and modern JavaScript frameworks. Knowledge of web accessibility standards is a plus.",
+        "skills": [
+          "React",
+          "JavaScript",
+          "CSS",
+          "Web Accessibility"
+        ],
+        "salary": "80000-95000",
+        "apply_url": "https://webinnovators.com/jobs/front-end-developer"
+      },
+      {
+        "job_id": "3",
+        "title": "UI/UX Designer",
+        "company": "Bright Design Studio",
+        "location": "New York, NY",
+        "employment_type": "Full-Time",
+        "description": "We are hiring a UI/UX designer to create beautiful and functional interfaces for our clients. Experience with Adobe XD, Sketch, and Figma is required.",
+        "skills": [
+          "UI Design",
+          "UX Research",
+          "Adobe XD",
+          "Sketch",
+          "Figma"
+        ],
+        "salary": "70000-85000",
+        "apply_url": "https://brightdesignstudio.com/careers/ui-ux-designer"
+      },
+      {
+        "job_id": "4",
+        "title": "Full-Stack Web Developer",
+        "company": "TechForward",
+        "location": "Austin, TX",
+        "employment_type": "Full-Time",
+        "description": "Looking for a full-stack web developer proficient in both front-end and back-end development. Knowledge of Node.js and MongoDB is essential.",
+        "skills": [
+          "JavaScript",
+          "Node.js",
+          "MongoDB",
+          "React",
+          "REST APIs"
+        ],
+        "salary": "90000-110000",
+        "apply_url": "https://techforward.com/jobs/full-stack-developer"
+      },
+      {
+        "job_id": "5",
+        "title": "Senior Web Designer",
+        "company": "DigitalSpark",
+        "location": "Chicago, IL",
+        "employment_type": "Full-Time",
+        "description": "Seeking an experienced web designer to lead projects and mentor junior designers. Strong background in visual design and experience with design systems.",
+        "skills": [
+          "Visual Design",
+          "Design Systems",
+          "Mentorship",
+          "HTML",
+          "CSS"
+        ],
+        "salary": "95000-120000",
+        "apply_url": "https://digitalspark.com/careers/senior-web-designer"
+      }
+    ]
+  }
+  
