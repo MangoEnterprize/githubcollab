@@ -31,6 +31,10 @@ def portal_page():
     # items = Item.query.all()
     return render_template('home.html')
 
+@app.route('/tutoring')
+def tutoring_page():
+    return render_template('tutoring.html')
+
 @app.route('/job')
 def jobs_page():
     return render_template('job.html')
@@ -94,6 +98,7 @@ def dashboard_page():
     experiences = (Experience.query.filter_by(user_id=current_user.id)).all()
 
     return render_template('dashboard.html', experiences=experiences)
+
 
 @app.route('/register', methods=['GET', 'POST'])
 def register_page():

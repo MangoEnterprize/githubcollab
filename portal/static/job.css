@@ -191,7 +191,6 @@ header{
     display: flex;
     gap:3%;
     justify-content: center;
-    
     flex-shrink: 1;
 
 }
@@ -261,8 +260,7 @@ header{
     text-align: left;
 }
 
-.content input{
-
+.content .btn{
 
     width: fit-content;
     height: 2rem;

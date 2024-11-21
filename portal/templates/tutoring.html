@@ -1,0 +1,117 @@
+{% extends 'base.html' %}
+
+{% block head %}
+<meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tutoring</title>
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='base.css') }}">
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='tutoring.css') }}">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Concert+One&family=Kaisei+HarunoUmi&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Concert+One&family=Kaisei+HarunoUmi:wght@400;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Concert+One&family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Kaisei+HarunoUmi:wght@400;700&display=swap" rel="stylesheet">
+    <script defer src="{{ url_for('static', filename='filter.js') }}"></script>
+
+    
+
+{% endblock %}
+
+
+{% block content %} 
+<main>
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="hero-content">
+            <h1>Achieve Your Best with Personalized Tutoring</h1>
+            <p>One-on-one or group sessions to help you excel in your studies and reach your academic goals.</p>
+        </div>
+    </section>
+
+    <!-- Available Tutors Section -->
+    <section class="available-tutors">
+        <h2>Our Expert Tutors</h2>
+        <div class="card-container">
+            <div class="card">
+                <img src="{{ url_for('static', filename='tutor1.jpg') }}" alt="Tutor 1">
+                <div class="card-content">
+                    <h3>John Doe</h3>
+                    <p>Specialized in Math and Physics. Over 5 years of experience in tutoring high school and college students.</p>
+                </div>
+            </div>
+            <div class="card">
+                <img src="{{ url_for('static', filename='tutor2.jpg') }}" alt="Tutor 2">
+                <div class="card-content">
+                    <h3>Jane Smith</h3>
+                    <p>Focused on English and Literature. Passionate about helping students enhance their writing skills.</p>
+                </div>
+            </div>
+            <div class="card">
+                <img src="{{ url_for('static', filename='tutor3.jpg') }}" alt="Tutor 3">
+                <div class="card-content">
+                    <h3>Emily Johnson</h3>
+                    <p>Expert in Computer Science and Programming. Offers personalized lessons for beginners and advanced learners.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Subjects Section -->
+    <section class="subject-selector">
+        <h2>Subjects We Cover</h2>
+        <ul class="subject-list">
+            <li>Mathematics (Algebra, Calculus, Geometry)</li>
+            <li>Science (Biology, Chemistry, Physics)</li>
+            <li>English (Writing, Reading Comprehension)</li>
+            <li>History</li>
+            <li>Computer Science and Programming</li>
+            <li>Test Preparation (SAT, ACT, GRE)</li>
+        </ul>
+    </section>
+
+    <!-- Contact Form Section -->
+    <section class="contact-form">
+        <h2>Contact Us for Tutoring</h2>
+        <form action="/submit_tutoring_request" method="POST">
+            <div class="form-group">
+                <label for="name">Your Name:</label>
+                <input type="text" id="name" name="name" placeholder="Enter your name" required>
+            </div>
+            <div class="form-group">
+                <label for="email">Your Email:</label>
+                <input type="email" id="email" name="email" placeholder="Enter your email" required>
+            </div>
+            <div class="form-group">
+                <label for="message">Your Request:</label>
+                <textarea id="message" name="message" rows="4" placeholder="Tell us about your needs" required></textarea>
+            </div>
+            <button type="submit">Submit</button>
+        </form>
+    </section>
+
+    <!-- Reservation Widget Section -->
+    <div class="reservation-widget">
+        <h2>Make a Reservation</h2>
+        <form>
+            <div class="form-group">
+                <label for="date">Date:</label>
+                <input type="date" id="date" name="date">
+            </div>
+            <div class="form-group">
+                <label for="time">Time:</label>
+                <input type="time" id="time" name="time">
+            </div>
+            <div class="form-group">
+                <label for="people">People:</label>
+                <select id="people" name="people">
+                    <option value="1">1 person</option>
+                    <option value="2" selected>2 people</option>
+                    <option value="3">3 people</option>
+                    <option value="4">4 people</option>
+                </select>
+            </div>
+            <button type="submit">Reserve</button>
+        </form>
+    </div>
+</main>
+{% endblock %}
