@@ -1,0 +1,28 @@
+[
+    {
+        "title": "Gates Scholarship",
+        "description": "A highly selective, full scholarship for exceptional minority high school seniors.",
+        "category": "university",
+        "url": "https://www.thegatesscholarship.org/scholarship"
+    },
+    {
+        "title": "Coca-Cola Scholars Program",
+        "description": "An achievement-based scholarship awarded to graduating high school seniors.",
+        "category": "private",
+        "url": "https://www.coca-colascholarsfoundation.org/apply/"
+    },
+    {
+        "title": "Pell Grant",
+        "description": "A federal grant for undergraduate students with financial need.",
+        "category": "grant",
+        "url": "https://studentaid.gov/understand-aid/types/grants/pell"
+    },
+    {
+        "title": "Jack Kent Cooke Foundation College Scholarship",
+        "description": "A scholarship for high-achieving high school seniors with financial need.",
+        "category": "university",
+        "url": "https://www.jkcf.org/our-scholarships/college-scholarship-program/"
+    }
+]
+    
+

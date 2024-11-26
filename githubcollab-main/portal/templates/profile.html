@@ -1,0 +1,286 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Graduate Portal</title>
+        <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='profile.css') }}">
+    </head>
+    <body>
+
+        <!-- Header Section -->
+        <header class="header">
+            <div class="square">
+                <img src="{{ url_for('static', filename='icon.png') }}">
+            </div>
+            <h1 class="header-title"><a class="nav-link" href="{{ url_for('home_page') }}">Uni-Portal</a></h1>
+        </header>
+
+        <!-- Main Section -->
+        <section class="banner">
+            <h2>Personal Information</h2>
+
+            
+        </section>
+
+        {%with messages = get_flashed_messages(with_categories=true)%}
+      {% if messages %}
+        {% for category, message in messages %}
+        <div class="alert alert-{{ category }}">
+        <button type="button" class="m1-2 mb1 close" data-dismiss="alert" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+        {{message}}
+      </div>
+        {% endfor %}
+      {% endif %}
+    {% endwith %}
+        <!-- Content Section -->
+        <main class="content">
+            <!-- Left Column -->
+
+            <div class="column">
+                <form method="POST" id="major-form">
+                <!-- Major -->
+                <div class="section">
+                    <h3>Major</h3>
+                    <form method="POST" id="major-form">
+                        <!-- generate secure token for form -->
+                        {{ form.hidden_tag() }}
+                        
+                        <select required name="major">
+                            {% if current_user.major != None %}
+                                <option value="{{ current_user.major }}" disabled selected>{{current_user.major}}</option>
+                            {% else %}
+                                <option value="" disabled selected>Select Major</option>
+                               
+                            {% endif %}
+                            
+                            {% for major in majors %}
+                                <option value="{{ major }}">{{ major }}</option>
+                            {% endfor %}
+
+                        </select>
+                        {{ form.submit(value="Submit")}}
+                    </form>
+                </div>
+
+                <!-- Job Experience Container -->
+                <div class="section" id="job-experience-container">
+                    <h3>Job Experience</h3>
+                    
+                    <form method="POST" id="job-experience-form">
+                        {{ form2.hidden_tag() }}
+                        <div class="job-experience">
+                            <label>Title:</label>
+                            {{ form2.title(placeholder="Work") }}
+                            
+                            <label>Description:</label>
+                            {{ form2.desc(placeholder="Work") }}
+
+                            <label>Date started:</label>
+                            <div class="select-group">
+                                <select name="monthstart">
+                                    <option value="" disabled selected>Month</option>
+                                    {% for month in months %}
+                                        <option value="{{ month }}">{{ month }}</option>
+                                    {% endfor %}
+                                </select>
+                                <select name="yearstart">
+                                    <option value="" disabled selected>Year</option>
+                                    {% for year in years %}
+                                        <option value="{{ year }}">{{ year }}</option>
+                                    {% endfor %}
+                                </select>
+                            </div>
+                            <div class="jobend">
+                            <label>Date Ended:</label>
+                            
+                            <select>
+                                <option value="monthend" disabled selected>Month</option>
+                                {% for month in months %}
+                                    <option value="{{ month }}">{{ month }}</option>
+                                {% endfor %}
+                            </select>
+                            <select value="yearend">
+                                <option value="" disabled selected>Year</option>
+                                <!-- Add years as needed -->
+                                {% for year in years %}
+                                        <option value="{{ year }}">{{ year }}</option>
+                                {% endfor %}
+                            </select>
+                        </div>
+                            <label>
+                                <input type="checkbox" class="checkbox"> Still Working Here
+                            </label>
+                            
+                            {{ form2.submit2(value="Submit")}}
+                        </div>
+                    
+                        
+                    <button type="button" class="add-job">Add another Job</button>
+                    <!-- Linked to profile.js -->
+                    <script src="profile.js"></script>
+                    </form>
+                </div>
+                </div>  
+                <!-- Right Column -->
+                <div class="column">
+                    <!-- Concentration -->
+                    <div class="section">
+                        <h3>Concentration</h3>
+                        <form id="job-experience-form">
+                            <select required>
+                                <option value="" disabled selected>Select...</option>
+                                <option>African and African American Studies</option>
+                                <option>Anthropology</option>
+                                <option>Applied Math</option>
+                                <option>English</option>
+                                <option>English</option>
+                            </select>
+                            <button>Submit</button>
+                        </form>
+                    </div>
+
+                    <!-- Graduation Year -->
+                    <div class="section">
+                        <h3>Graduation Year</h3>
+                        <label>Month:</label>
+                        <form id="job-experience-form">
+                        <select required>
+                            <option value="" disabled selected>Month</option>
+                            <option>January</option>
+                            <option>February</option>
+                            <option>March</option>
+                            <option>April</option>
+                            <option>May</option>
+                            <option>June</option>
+                            <option>July</option>
+                            <option>August</option>
+                            <option>September</option>
+                            <option>October</option>
+                            <option>November</option>
+                            <option>December</option>
+                        </select>
+                        <label>Year:</label>
+                        <select required>
+                            <option value="" disabled selected>Year</option>
+                                <!-- Add years as needed -->
+                                <option>2024</option>
+                                <option>2023</option>
+                                <option>2022</option>
+                                <option>2021</option>
+                                <option>2020</option>
+                                <option>2019</option>
+                                <option>2018</option>
+                                <option>2017</option>
+                                <option>2016</option>
+                                <option>2015</option>
+                                <option>2014</option>
+                                <option>2013</option>
+                                <option>2012</option>
+                        </select>
+                        <button type="submit">Submit</button>
+                    </form>
+                </div>
+
+                <!-- Volunteer Work -->
+                <div class="section" id="volunteer-work-container">
+                    <h3>Volunteer Work</h3>
+                    <div class="volunteer-work">
+                        <label>Month:</label>
+                        <form id="volunteer-work-form">
+                            <select required>
+                                <option value="" disabled selected>Month</option>
+                                <option>January</option>
+                                <option>February</option>
+                                <option>March</option>
+                                <option>April</option>
+                                <option>May</option>
+                                <option>June</option>
+                                <option>July</option>
+                                <option>August</option>
+                                <option>September</option>
+                                <option>October</option>
+                                <option>November</option>
+                                <option>December</option>
+                            </select>
+                            <label>Year:</label>
+                            <select required>
+                                <option value="" disabled selected>Year</option>
+                                    <!-- Add years as needed -->
+                                    <option>2024</option>
+                                    <option>2023</option>
+                                    <option>2022</option>
+                                    <option>2021</option>
+                                    <option>2020</option>
+                                    <option>2019</option>
+                                    <option>2018</option>
+                                    <option>2017</option>
+                                    <option>2016</option>
+                                    <option>2015</option>
+                                    <option>2014</option>
+                                    <option>2013</option>
+                                    <option>2012</option>
+                            </select>
+                            <label>Company:</label>
+                            <input required type="text" placeholder="Work">
+                            <label>Description:</label>
+                            <input type="text" placeholder="Work Description">
+                            <button>Submit</button>
+                            <button type="button" class="add-volunteer">Add more Volunteer Work</button>
+                        <script src="profile.js"></script>
+                    </form>
+                </div>
+            </div>
+            </div>
+        </main>
+        <script>
+            const checkbox = document.querySelector(".checkbox");
+            const jobend = document.querySelector(".jobend");
+
+            checkbox.addEventListener('click', e=>{
+                if (checkbox.checked) {
+                // Checkbox is checked
+                // hide end date
+                jobend.classList.add('hidden');
+                
+                } else {
+                    jobend.classList.remove('hidden');
+                }
+
+            })
+            
+
+            document.querySelector('.add-job').addEventListener('click', function() {
+                // Get the job experience container
+                const jobExperienceContainer = document.getElementById('job-experience-container');
+                // Clone the first job experience div
+                const newJobExperience = jobExperienceContainer.querySelector('.job-experience').cloneNode(true);
+                // Clear the input fields in the cloned job experience
+                const inputs = newJobExperience.querySelectorAll('input[type="text"]');
+                inputs.forEach(input => input.value = '');
+                // Append the new job experience to the container
+                jobExperienceContainer.appendChild(newJobExperience);
+            });
+            document.querySelector('.add-volunteer').addEventListener('click', function() {
+            // Get the volunteer work container
+            const volunteerWorkContainer = document.getElementById('volunteer-work-container');
+
+            // Clone the first volunteer work div
+            const newVolunteerWork = volunteerWorkContainer.querySelector('.volunteer-work').cloneNode(true);
+
+            // Clear the input fields in the cloned volunteer work
+            const inputs = newVolunteerWork.querySelectorAll('input[type="text"]');
+            inputs.forEach(input => input.value = '');
+
+            // Append the new volunteer work to the container
+            volunteerWorkContainer.appendChild(newVolunteerWork);
+            });
+        </script>
+    </body>
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js" integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js" integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV" crossorigin="anonymous"></script>
+
+</html>
