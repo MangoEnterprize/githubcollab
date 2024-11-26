@@ -102,15 +102,18 @@
                 <input type="time" id="time" name="time">
             </div>
             <div class="form-group">
-                <label for="people">People:</label>
-                <select id="people" name="people">
-                    <option value="1">1 person</option>
-                    <option value="2" selected>2 people</option>
-                    <option value="3">3 people</option>
-                    <option value="4">4 people</option>
+                <label for="subject">Subject:</label>
+                <select id="subject" name="subject" onchange="filterClasses()">
+                    <option value="Mathematics">Mathematics</option>
+                    <option value="Science">Science</option>
+                    <option value="English">English</option>
+                    <option value="History">History</option>
                 </select>
-                <label for="tutor">Subject</label>
-                <select id=""""
+
+                <label for="class">Class:</label>
+                <select id="class" name="class">
+                    
+                </select>
             </div>
             <button type="submit">Reserve</button>
         </form>

@@ -12,19 +12,192 @@
     <link href="https://fonts.googleapis.com/css2?family=Concert+One&family=Kaisei+HarunoUmi&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Concert+One&family=Kaisei+HarunoUmi:wght@400;700&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Concert+One&family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Kaisei+HarunoUmi:wght@400;700&display=swap" rel="stylesheet">
-    <script defer src="{{ url_for('static', filename='filter.js') }}"></script>
+<script>
+    // document.addEventListener('DOMContentLoaded', () => {
+    //     const imageUrl = "{{ url_for('static', filename='icon.png') }}";
+
+    //     const imgElement = document.createElement('img');
+    //     imgElement.src = imageUrl;
+    //     imgElement.alt = "Dynamic Image";
+
+    //     const cards = document.querySelectorAll('.card');
+    //     cards.forEach(card => {
+    //         card.appendChild(imgElement.cloneNode(true)); // Use cloneNode to ensure each card gets its own image
+    //     });
+        
+    // });
+    const imageUrl = "{{ url_for('static', filename='icon.png') }}";
+</script>
+<script defer src="{{ url_for('static', filename='job.js') }}"></script>
 
 {% endblock %}
 
 
 {% block content %}
 
+<!-- <header>
+<h3>Uni-Portal</h3>
+<nav>
+    <ul>
+        <li><a href="job.html">Profile</a></li>
+        <li><a href="job.html">Search</a></li>
+        <li><a href="job.html">Tutoring</a></li>
+    </ul>
+</nav>
+
+</header> -->
 
 <main>
-       
-    <section>
-        <div class="banner">
-            <p>Scholarship Search</p>
+   
+<section>
+    <div class="banner">
+        <p>Scholarship Search</p>
+    </div>
+    <div class="image-container">
+        <img src="{{ url_for('static', filename='icon.png') }}" alt="icon" class="resized-image">
+    </div>
+</section>
+
+<section>
+    <form class="radio-button">
+    
+        <button type="button" id="sort-by" class="sort-by">Sort By</button>
+        
+        <div class="radio-group">
+            
+            <div class="radio-item">
+                <input type="radio" value="Remote" name="options" id="Remote">
+                <label for="remote">Essay Required</label>
+            </div>
+            <div class="radio-item">
+                <input type="radio" value="Onsite" name="options" id="Onsite">
+                <label for="onsite">No Essay</label>
+            </div>
+        </div>
+    </form>
+</section>
+
+<section class="listing">
+    <h1>Scholarships</h1>
+    <div class="full">
+        <h3>Military</h3>
+        <div class="card-container">
+            <!-- <div class="card">
+                <img src="{{ url_for('static', filename='icon.png') }}" alt="icon">
+                <div class="content">
+                    <p>Remote Job 1</p>
+                    <p>Work from anywhere.</p>
+                    <input type="button" value="Apply" class="btn">
+                </div>
+            </div>
+            <div class="card">
+                <img src="{{ url_for('static', filename='icon.png') }}" alt="icon">
+                <div class="content">
+                    <p>Onsite Job 2</p>
+                    <p>Office-based opportunity.</p>
+                    <input type="button" value="Apply" class="btn">
+                </div>
+            </div> -->
+            
+        </div>
+    </div>
+    
+    <div class="part">
+        <h3>Athletics</h3>
+        <div class="card-container">
+            <!-- <div class="card">
+                <img src="{{ url_for('static', filename='icon.png') }}" alt="icon">
+                <div class="content">
+                    <p>Job 1</p>
+                    <p>Learn about hosting built for scale and reliability.</p>
+                    <input type="button" value="Apply" class="btn">
+                </div>
+                
+            </div>
+            <div class="card">
+                <img src="{{ url_for('static', filename='icon.png') }}" alt="icon">
+                <div class="content">
+                    <p>Job 1</p>
+                    <p>Learn about hosting built for scale and reliability.</p>
+                    <input type="button" value="Apply" class="btn">
+                </div>
+                
+            </div>
+            <div class="card">
+                <img src="{{ url_for('static', filename='icon.png') }}" alt="icon">
+                <div class="content">
+                    <p>Job 1</p>
+                    <p>Learn about hosting built for scale and reliability.</p>
+                    <input type="button" value="Apply" class="btn">
+                </div>
+                
+            </div> -->
+        </div>
+    </div>
+
+    <div class="internship">
+        <h3>First-Generation</h3>
+        <div class="card-container">
+            <!-- <div class="card">
+                <img src="{{ url_for('static', filename='icon.png') }}" alt="icon">
+                <div class="content">
+                    <p>Job 1</p>
+                    <p>Learn about hosting built for scale and reliability.</p>
+                    <input type="button" value="Apply" class="btn">
+                </div>
+                
+            </div>
+            <div class="card">
+                <img src="{{ url_for('static', filename='icon.png') }}" alt="icon">
+                <div class="content">
+                    <p>Job 1</p>
+                    <p>Learn about hosting built for scale and reliability.</p>
+                    <input type="button" value="Apply" class="btn">
+                </div>
+                
+            </div>
+            <div class="card">
+                <img src="{{ url_for('static', filename='icon.png') }}" alt="icon">
+                <div class="content">
+                    <p>Job 1</p>
+                    <p>Learn about hosting built for scale and reliability.</p>
+                    <input type="button" value="Apply" class="btn">
+                </div>
+                
+            </div> -->
+        </div>
+    </div>
+</section>
+
+
+</main>
+
+
+
+{% endblock%}
+
+<!-- <!DOCTYPE html>
+<html lang="en">
+<head>
+</head>
+<body>
+<header>
+    <h3>Uni-Portal</h3>
+    <nav>
+        <ul>
+            <li><a href="job.html">Profile</a></li>
+            <li><a href="job.html">Search</a></li>
+            <li><a href="job.html">Tutoring</a></li>
+        </ul>
+    </nav>
+
+</header>
+
+<main>
+   
+    <section class="title">
+        <div class="job-search">
+            <p>Job Search</p>
         </div>
         <div class="image-container">
             <img src="{{ url_for('static', filename='icon.png') }}" alt="icon" class="resized-image">
@@ -34,94 +207,85 @@
     <section>
         <form class="radio-button">
         
-            <button type="button" id="sort-by" class="sort-by">Sort By</button>
+            <button class="sort-by">Sort By</button>
             
             <div class="radio-group">
-
                 <div class="radio-item">
-                    <input type="radio" id="essay" value="essay" name="options">
-                    <label for="essay">Essay</label>
+                    <input type="radio" value="Location" name="options">
+                    <label>Location</label>
                 </div>
                 <div class="radio-item">
-                    <input type="radio" id="noEssay" value="noEssay" name="options">
-                    <label for="noEssay">No Essay</label>
+                    <input type="radio" value="On-campus" name="options">
+                    <label>On-campus</label>
+                </div>
+                <div class="radio-item">
+                    <input type="radio" value="Off-campus" name="options">
+                    <label>Off-campus</label>
                 </div>
             </div>
         </form>
     </section>
 
     <section class="listing">
-        <h1>Scholarship Listing</h1>
-        <div class="full essay">
-            <h3>Athletics</h3>
+        <h1>Job Listing</h1>
+        <div class="full">
+            <h3>Full-Time</h3>
             <div class="card-container">
                 <div class="card">
                     <img src="{{ url_for('static', filename='icon.png') }}" alt="icon">
-                    <div class="content" data-type="essay">
-                        <p>Foot Locker Scholar Athletes Program</p>
-                        <p>The Foot Locker Scholar Athletes Program is funded by the Foot Locker Foundation…</p>
-                        <a href="https://scholarships360.org/scholarships/search/foot-locker-scholar-athletes-program/">
-                            <input type="button" value="Apply">
-                        </a>
+                    <div class="content">
+                        <p>Job 1</p>
+                        <p>Learn about hosting built for scale and reliability.</p>
+                        <input type="button" value="Apply">
                     </div>
                     
                 </div>
                 <div class="card">
                     <img src="{{ url_for('static', filename='icon.png') }}" alt="icon">
-                    <div class="content" data-type= "no-essay">
-                        <p>American Legion Baseball Scholarship</p>
+                    <div class="content">
+                        <p>Job 1</p>
                         <p>Learn about hosting built for scale and reliability.</p>
-                        <a href="https://scholarships360.org/scholarships/search/american-legion-baseball-scholarship/">
-                            <input type="button" value="Apply">
-                        </a>
+                        <input type="button" value="Apply">
                     </div>
                 </div>
                 <div class="card">
                     <img src="{{ url_for('static', filename='icon.png') }}" alt="icon">
                     <div class="content">
-                        <p>Ethnic Minority and Women’s Enhancement Graduate Scholarship</p>
+                        <p>Job 1</p>
                         <p>Learn about hosting built for scale and reliability.</p>
-                        <a href="https://scholarships360.org/scholarships/search/ethnic-minority-and-womens-enhancement-graduate-scholarship/">
-                            <input type="button" value="Apply">
-                        </a>
+                        <input type="button" value="Apply">
                     </div>
                 </div>
             </div>
         </div>
         
-        <div class="part no-essay">
-            <h3>No Recommendations Required</h3>
+        <div class="part">
+            <h3>Part-Time</h3>
             <div class="card-container">
                 <div class="card">
                     <img src="{{ url_for('static', filename='icon.png') }}" alt="icon">
                     <div class="content">
-                        <p>$ 2,500 Edvisors Monthly Scholarship</p>
+                        <p>Job 1</p>
                         <p>Learn about hosting built for scale and reliability.</p>
-                        <a href="https://tracking.edvisors.com/aff_c?offer_id=2047&aff_id=1070">
-                            <input type="button" value="Apply">
-                        </a>
+                        <input type="button" value="Apply">
                     </div>
                     
                 </div>
                 <div class="card">
                     <img src="{{ url_for('static', filename='icon.png') }}" alt="icon">
                     <div class="content">
-                        <p>Matthews & Swift Educational Trust Scholarships</p>
+                        <p>Job 1</p>
                         <p>Learn about hosting built for scale and reliability.</p>
-                        <a href="https://www.kofc.org/en/what-we-do/scholarships/educational-trust-scholarship.html?1tab=1tab0">
-                            <input type="button" value="Apply">
-                        </a>
+                        <input type="button" value="Apply">
                     </div>
                     
                 </div>
                 <div class="card">
                     <img src="{{ url_for('static', filename='icon.png') }}" alt="icon">
                     <div class="content">
-                        <p>Teacher Education Assistance for College and Higher Education (TEACH) Grant</p>
+                        <p>Job 1</p>
                         <p>Learn about hosting built for scale and reliability.</p>
-                        <a href="https://studentaid.gov/understand-aid/types/grants/teach">
-                            <input type="button" value="Apply">
-                        </a>
+                        <input type="button" value="Apply">
                     </div>
                     
                 </div>
@@ -129,248 +293,48 @@
         </div>
 
         <div class="internship">
-            <h3>Military</h3>
+            <h3>Internship</h3>
             <div class="card-container">
                 <div class="card">
                     <img src="{{ url_for('static', filename='icon.png') }}" alt="icon">
                     <div class="content">
-                        <p>Army ROTC Scholarship</p>
+                        <p>Job 1</p>
                         <p>Learn about hosting built for scale and reliability.</p>
-                        <a href="https://www.goarmy.com/careers-and-jobs/find-your-path/army-officers/rotc/scholarships.html">
-                            <input type="button" value="Apply">
-                        </a>
+                        <input type="button" value="Apply">
                     </div>
                     
                 </div>
                 <div class="card">
                     <img src="{{ url_for('static', filename='icon.png') }}" alt="icon">
                     <div class="content">
-                        <p>NROTC Marine Option Scholarship</p>
+                        <p>Job 1</p>
                         <p>Learn about hosting built for scale and reliability.</p>
-                        <a href="https://www.netc.navy.mil/Commands/Naval-Service-Training-Command/NROTC/Marine/Marine/Marine/#Top1">
-                            <input type="button" value="Apply">
-                        </a>
+                        <input type="button" value="Apply">
                     </div>
                     
                 </div>
                 <div class="card">
                     <img src="{{ url_for('static', filename='icon.png') }}" alt="icon">
                     <div class="content">
-                        <p>NROTC Navy Scholarship</p>
+                        <p>Job 1</p>
                         <p>Learn about hosting built for scale and reliability.</p>
-                        <a href="https://www.navy.com/careers-benefits/education/nrotc?q=education-opportunities/college-options-and-scholarships/nrotc">
-                            <input type="button" value="Apply">
-                        </a>
+                        <input type="button" value="Apply">
                     </div>
                     
                 </div>
             </div>
         </div>
-
-        <div class="part no-essay">
-            <h3>Other</h3>
-            <div class="card-container">
-                <div class="card">
-                    <img src="{{ url_for('static', filename='icon.png') }}" alt="icon">
-                    <div class="content">
-                        <p>$2,500 “No Sweat” Scholarship</p>
-                        <p>Learn about hosting built for scale and reliability.</p>
-                        <a href="https://www.cirkledin.com/scholarships/?ref=niche">
-                            <input type="button" value="Apply">
-                        </a>
-                    </div>
-                    
-                </div>
-                <div class="card">
-                    <img src="{{ url_for('static', filename='icon.png') }}" alt="icon">
-                    <div class="content">
-                        <p>$ 1,000 Tallo Career Exploration Scholarship</p>
-                        <p>Learn about hosting built for scale and reliability.</p>
-                        <a href="https://tallo.com/career-exploration-scholarship-niche20241130/?utm_source=niche&utm_medium=cpc&utm_campaign=1000-scholarship-20241130">
-                            <input type="button" value="Apply">
-                        </a>
-                    </div>
-                    
-                </div>
-                <div class="card">
-                    <img src="{{ url_for('static', filename='icon.png') }}" alt="icon">
-                    <div class="content">
-                        <p>$ 50,000 ScholarshipOwl No Essay Scholarship</p>
-                        <p>Learn about hosting built for scale and reliability.</p>
-                        <a href="https://tracking.scholarshipowl.com/aff_c?offer_id=24&aff_id=1345&url_id=202">
-                            <input type="button" value="Apply">
-                        </a>
-                    </div>
-                    
-                </div>
-            </div>
-        </div>
-
     </section>
 
 
 </main>
 
-{% endblock%}
 
-<html lang="en">
-<head>
-    </head>
-<body>
-    <header>
-        <h3>Uni-Portal</h3>
-        <nav>
-            <ul>
-                <li><a href="job.html">Profile</a></li>
-                <li><a href="job.html">Search</a></li>
-                <li><a href="job.html">Tutoring</a></li>
-            </ul>
-        </nav>
-
-    </header>
-    
-    <main>
-       
-        <section class="title">
-            <div class="job-search">
-                <p>Job Search</p>
-            </div>
-            <div class="image-container">
-                <img src="{{ url_for('static', filename='icon.png') }}" alt="icon" class="resized-image">
-            </div>
-        </section>
-
-        <section>
-            <form class="radio-button">
-            
-                <button class="sort-by">Sort By</button>
-                
-                <div class="radio-group">
-                    <div class="radio-item">
-                        <input type="radio" value="Location" name="options">
-                        <label>Location</label>
-                    </div>
-                    <div class="radio-item">
-                        <input type="radio" value="On-campus" name="options">
-                        <label>On-campus</label>
-                    </div>
-                    <div class="radio-item">
-                        <input type="radio" value="Off-campus" name="options">
-                        <label>Off-campus</label>
-                    </div>
-                </div>
-            </form>
-        </section>
-
-        <section class="listing">
-            <h1>Job Listing</h1>
-            <div class="full">
-                <h3>Full-Time</h3>
-                <div class="card-container">
-                    <div class="card">
-                        <img src="{{ url_for('static', filename='icon.png') }}" alt="icon">
-                        <div class="content">
-                            <p>Job 1</p>
-                            <p>Learn about hosting built for scale and reliability.</p>
-                            <input type="button" value="Apply">
-                        </div>
-                        
-                    </div>
-                    <div class="card">
-                        <img src="{{ url_for('static', filename='icon.png') }}" alt="icon">
-                        <div class="content">
-                            <p>Job 1</p>
-                            <p>Learn about hosting built for scale and reliability.</p>
-                            <input type="button" value="Apply">
-                        </div>
-                    </div>
-                    <div class="card">
-                        <img src="{{ url_for('static', filename='icon.png') }}" alt="icon">
-                        <div class="content">
-                            <p>Job 1</p>
-                            <p>Learn about hosting built for scale and reliability.</p>
-                            <input type="button" value="Apply">
-                        </div>
-                    </div>
-                </div>
-            </div>
-            
-            <div class="part">
-                <h3>Part-Time</h3>
-                <div class="card-container">
-                    <div class="card">
-                        <img src="{{ url_for('static', filename='icon.png') }}" alt="icon">
-                        <div class="content">
-                            <p>Job 1</p>
-                            <p>Learn about hosting built for scale and reliability.</p>
-                            <input type="button" value="Apply">
-                        </div>
-                        
-                    </div>
-                    <div class="card">
-                        <img src="{{ url_for('static', filename='icon.png') }}" alt="icon">
-                        <div class="content">
-                            <p>Job 1</p>
-                            <p>Learn about hosting built for scale and reliability.</p>
-                            <input type="button" value="Apply">
-                        </div>
-                        
-                    </div>
-                    <div class="card">
-                        <img src="{{ url_for('static', filename='icon.png') }}" alt="icon">
-                        <div class="content">
-                            <p>Job 1</p>
-                            <p>Learn about hosting built for scale and reliability.</p>
-                            <input type="button" value="Apply">
-                        </div>
-                        
-                    </div>
-                </div>
-            </div>
-
-            <div class="internship">
-                <h3>Internship</h3>
-                <div class="card-container">
-                    <div class="card">
-                        <img src="{{ url_for('static', filename='icon.png') }}" alt="icon">
-                        <div class="content">
-                            <p>Job 1</p>
-                            <p>Learn about hosting built for scale and reliability.</p>
-                            <input type="button" value="Apply">
-                        </div>
-                        
-                    </div>
-                    <div class="card">
-                        <img src="{{ url_for('static', filename='icon.png') }}" alt="icon">
-                        <div class="content">
-                            <p>Job 1</p>
-                            <p>Learn about hosting built for scale and reliability.</p>
-                            <input type="button" value="Apply">
-                        </div>
-                        
-                    </div>
-                    <div class="card">
-                        <img src="{{ url_for('static', filename='icon.png') }}" alt="icon">
-                        <div class="content">
-                            <p>Job 1</p>
-                            <p>Learn about hosting built for scale and reliability.</p>
-                            <input type="button" value="Apply">
-                        </div>
-                        
-                    </div>
-                </div>
-            </div>
-        </section>
-
-    
-    </main>
+<footer>
 
 
-    <footer>
+    <small>Copyright</small>
 
-
-        <small>Copyright</small>
-
-    </footer> 
+</footer> 
 </body>
 </html> -->
