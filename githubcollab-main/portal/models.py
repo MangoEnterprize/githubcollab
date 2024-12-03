@@ -59,7 +59,14 @@ class Experience(db.Model):
     
     user_id = db.Column(db.Integer, db.ForeignKey('user.id'), nullable=False)
 
+    # additional attribute accessible from each instance
+    @property
+    def format(self):
+        body = [self.title, self.desc]
+        return body
+    
+
     def __repr__(self):
         nl = "\n"
         # print(f'Experience 1: {self.title}{nl}{self.desc}{nl}')
-        return f'Experience 1: {self.title}{nl}{self.desc}{nl}'
+        return f'{self.title}{nl}{self.desc}{nl}'

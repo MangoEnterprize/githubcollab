@@ -194,10 +194,21 @@
 <div class="sidebar">
     <h2>Your Profile</h2>
     <hr>
-    <p>Your major is: {{ current_user.major }}</p>
-    <p>Your concentration is: {{ current_user.concentration }}</p>
-    <p>Your expected graduation is: {{ current_user.gradmonth }} {{current_user.gradyear}}</p>
-    <p>Your experiences: {{experiences}}</p>
+    <p>Your major is: {{ user.major }}</p>
+    <p>Your concentration is: {{ user.concentration }}</p>
+    <p>Your expected graduation is: {{ user.gradmonth }} {{user.gradyear}}</p>
+
+    <!-- loop through experience items -->
+
+    <h3>Experiences</h3>
+    {% for experience in experiences %}
+    <div>
+        <h4>{{ experience[0] }}</h4>
+        <span>{{ experience[1] }}</span>
+    </div>
+    {% endfor %}
+    <hr>
+
     <a href="{{ url_for('profile_page') }}">Edit Profile</a>
     <!-- added logout url to logout user -->
     <a href="{{ url_for('logout_page') }}">Logout</a>
@@ -219,7 +230,7 @@
     {% endwith %}
     <div class="header">
         <p>Student Dashboard</p>
-        <h1>Welcome, {{current_user.firstname}}</h1>
+        <h1>Welcome, {{user.firstname}}</h1>
 
         <!-- Messages section handles error and success messages -->
       

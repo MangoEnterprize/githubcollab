@@ -13,7 +13,6 @@ def home_page():
     
     return render_template('home.html')
 
-# dynamic route takes username
 # TODO:needs to take logged in username
 @app.route('/about')
 def about_page():
@@ -25,7 +24,7 @@ def scholarship_page():
 
 
 @app.route('/jobs')
-@login_required
+# @login_required
 def portal_page():
     # Items has been removed
     # items = Item.query.all()
@@ -40,7 +39,7 @@ def jobs_page():
     return render_template('job.html')
 
 @app.route('/profile', methods=['GET', 'POST'])
-@login_required
+# @login_required
 def profile_page():
     majors = ['Computer Science', 'English', 'Business Administration', 'Psychology', 'Biology', 'Engineering', 'Art', 'History', 'Mathematics']
     years = [ 2013, 2014, 2015, 2016, 2017, 2018, 2019, 2020, 2021, 2022, 2023, 2024]
@@ -48,7 +47,12 @@ def profile_page():
 
     form = ProfileForm()
     form2 = ExperienceForm()
-    user = User.query.filter_by(id=current_user.id).first()
+
+    if not current_user.is_authenticated:
+        flash(f'Required login for this page is currently disabled. For testing purposes, we are using maddie as the user. Work in progress', category='success')
+        user = User.query.filter_by(email_address="mbrow378@uncc.edu").first()
+    else:
+        user = User.query.filter_by(id=current_user.id).first()
     #   User.query.get_or_404(current_user.id)
 
     # distinguish by which form is submitted
@@ -81,6 +85,8 @@ def profile_page():
         flash(f'Profile updated successfully', category='success')
         # return redirect(url_for('dashboard_page'))
     
+
+    # Errors
     if form.errors: #if no errors from validation
         for error in form.errors.values():
             flash(f'Error during submission: {error[0]}', category='danger')
@@ -89,15 +95,24 @@ def profile_page():
         for error in form2.errors.values():
             flash(f'Error during submission: {error[0]}', category='danger')
     
-    return render_template('profile.html', form=form, majors=majors, form2=form2, years=years, months=months)
+    return render_template('profile.html', form=form, majors=majors, form2=form2, years=years, months=months, user=user)
 
 # User must be logged in to access dashboard
 @app.route('/dashboard')
-@login_required
+# @login_required
 def dashboard_page():
-    experiences = (Experience.query.filter_by(user_id=current_user.id)).all()
 
-    return render_template('dashboard.html', experiences=experiences)
+    if not current_user.is_authenticated:
+        flash(f'Required login for this page is currently disabled. For testing purposes, we are using maddie as the user', category='success')
+        user = User.query.filter_by(email_address="mbrow378@uncc.edu").first()
+        experiences = (Experience.query.filter_by(user_id=user.id)).all()
+    else:
+        user = User.query.filter_by(id=current_user.id).first()
+        experiences = (Experience.query.filter_by(user_id=current_user.id)).all()
+        # loop through experiences calling the formatting function
+        experiences = [x.format for x in experiences]
+
+    return render_template('dashboard.html', experiences=experiences, user=user)
 
 
 @app.route('/register', methods=['GET', 'POST'])
