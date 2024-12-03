@@ -1,4 +1,4 @@
-# About
+.# About
 ### This app is a demo for UniPortal, a networking platform for students used to connect them with resources such as scholarships, jobs, internships, writing support, etc. 
 
 Built with Flask, HTML, CSS, JS

@@ -25,7 +25,7 @@ main {
 }
 
 .hero h1 {
-    text-align: left;
+    text-align: center;
     font-size: 3rem;
     color: #527e4f;
 }
@@ -113,3 +113,27 @@ a{
 .content-container p{
     text-align:left;
 }
+
+.about {
+    padding: 5px;
+    background-color: #f4f4f4;
+    border-radius: 8px;
+    margin-top: 20px;
+}
+
+.about h2 {
+    font-size: 1.8em;
+    color: #4c4c4c;
+}
+
+.about p {
+    font-size: 1.1em;
+    color: #555;
+    line-height: 1.6;
+}
+
+.divider {
+    border-top: 5px solid #030101;
+    margin: 20px 0; /* Add some spacing above and below the line */
+}
+

@@ -3,7 +3,7 @@ const fullTimeJobs = [
       "title": "Software Engineer",
       "description": "We are seeking a passionate and skilled Software Engineer to join our team. You will design, develop, and maintain high-quality software solutions while collaborating with cross-functional teams to ensure the best outcomes.",
       "location": "Remote",
-      "url": "https://www.example.com/jobs/software-engineer"
+      "url": "https://www.indeed.com/q-Software-Engineer-jobs.html?vjk=d8439caa6ea056b2&advn=7831672186689475"
     },
     {
       "title": "Product Manager",
@@ -57,13 +57,13 @@ const internships = [
     "title": "Software Development Intern",
     "description": "Assist in the development and testing of software applications. Collaborate with the engineering team to learn and contribute to projects using modern tools and practices.",
     "location": "Remote",
-    "url": "https://www.example.com/internships/software-development-intern"
+    "url": "https://www.indeed.com/jobs?q=Software+engineer+Intern&l=&from=searchOnDesktopSerp&vjk=255e73b4eddf67e1&advn=4220679437326170"
   },
   {
     "title": "Marketing Intern",
     "description": "Support the marketing team with campaign execution, social media management, and analytics. Gain hands-on experience in digital marketing strategies.",
     "location": "Onsite",
-    "url": "https://www.example.com/internships/marketing-intern"
+    "url": "https://www.indeed.com/jobs?q=Marketing+Intern&l=&from=searchOnDesktopSerp&vjk=3c9704122dcc4a6b"
   },
   {
     "title": "Data Science Intern",
@@ -93,102 +93,101 @@ document.addEventListener("DOMContentLoaded", () => {
 
 // Function to dynamically load full time jobs
 function loadFullTimeJob(fullTimeJobs) {
-    
-    // select the full time job container class
-    const fullTimeContainer = allContainers[0];
+  const fullTimeContainer = allContainers[0];
+  fullTimeContainer.innerHTML = ""; // Clear any existing jobs
 
-    fullTimeContainer.innerHTML = ""; // Clear any existing jobs
+  fullTimeJobs.forEach(fullTimeJob => {
+      const card = document.createElement("div");
+      card.classList.add("card", fullTimeJob.location);
 
-    fullTimeJobs.forEach(fullTimeJob => {
-        const card = document.createElement("div");
-        card.classList.add("card", fullTimeJob.location);
+      const divElement = document.createElement('div');
+      divElement.classList.add('content');
 
-        //create a div class name 'content'
-        const divElement = document.createElement('div');
-        divElement.classList.add('content');
+      const imgElement = document.createElement('img');
+      imgElement.src = imageUrl; // Replace `imageUrl` with your actual image URL
 
-        // create img element
-        const imgElement = document.createElement('img');
-        imgElement.src = imageUrl;
-        // create two p elements
-        const pElementOne = document.createElement('p');
-        pElementOne.textContent = fullTimeJob.title;
-        const pElementTwo = document.createElement('p');
-        pElementTwo.textContent = fullTimeJob.description;
-        // create button element
-        const Applybtn = document.createElement('button');
-        Applybtn.classList.add('btn');
-        Applybtn.textContent = 'apply';
-        // add append p elemenst and button to div class name 'content'
-        divElement.append(imgElement, pElementOne, pElementTwo, Applybtn);
-        // append div to 'card'
-        card.appendChild(divElement);
-        fullTimeContainer.appendChild(card);
-    });
+      const pElementOne = document.createElement('p');
+      pElementOne.textContent = fullTimeJob.title;
+
+      const pElementTwo = document.createElement('p');
+      pElementTwo.textContent = fullTimeJob.description;
+
+      const link = document.createElement('a');
+      link.href = fullTimeJob.url;
+      link.target = '_blank'; // Opens the link in a new tab
+      link.classList.add('btn');
+      link.textContent = 'Apply';
+
+      divElement.append(imgElement, pElementOne, pElementTwo, link);
+      card.appendChild(divElement);
+      fullTimeContainer.appendChild(card);
+  });
 }
+
 
 
 // Function to dynamically load part time jobs 
 function loadPartTimeJob(partTimeJobs) {
-
-  // select the part time job container class
   const partTimeContainer = allContainers[1];
+  partTimeContainer.innerHTML = ""; // Clear any existing jobs
 
   partTimeJobs.forEach(partTimeJob => {
       const card = document.createElement("div");
       card.classList.add("card", partTimeJob.location);
 
-      //create a div class name 'content'
       const divElement = document.createElement('div');
       divElement.classList.add('content');
-      // create img element
+
       const imgElement = document.createElement('img');
-      imgElement.src = imageUrl;
-      // create two p elements
+      imgElement.src = imageUrl; // Replace `imageUrl` with your actual image URL
+
       const pElementOne = document.createElement('p');
       pElementOne.textContent = partTimeJob.title;
+
       const pElementTwo = document.createElement('p');
       pElementTwo.textContent = partTimeJob.description;
-      // create button element
-      const Applybtn = document.createElement('button');
-      Applybtn.classList.add('btn');
-      Applybtn.textContent = 'apply';
-      // add append p elemenst and button to div class name 'content'
-      divElement.append(imgElement, pElementOne, pElementTwo, Applybtn);
-      // append div to 'card'
+
+      const link = document.createElement('a');
+      link.href = partTimeJob.url;
+      link.target = '_blank'; // Opens the link in a new tab
+      link.classList.add('btn');
+      link.textContent = 'Apply';
+
+      divElement.append(imgElement, pElementOne, pElementTwo, link);
       card.appendChild(divElement);
       partTimeContainer.appendChild(card);
   });
 }
 
+
 // Function to dynamically load internships
 function loadInternship(internships) {
-
-  // select internship container class
   const internshipContainer = allContainers[2];
+  internshipContainer.innerHTML = ""; // Clear any existing internships
 
   internships.forEach(internship => {
       const card = document.createElement("div");
       card.classList.add("card", internship.location);
 
-      //create a div class name 'content'
       const divElement = document.createElement('div');
       divElement.classList.add('content');
-      // create img element
+
       const imgElement = document.createElement('img');
-      imgElement.src = imageUrl;
-      // create two p elements
+      imgElement.src = imageUrl; // Replace `imageUrl` with your actual image URL
+
       const pElementOne = document.createElement('p');
       pElementOne.textContent = internship.title;
+
       const pElementTwo = document.createElement('p');
       pElementTwo.textContent = internship.description;
-      // create button element
-      const Applybtn = document.createElement('button');
-      Applybtn.classList.add('btn');
-      Applybtn.textContent = 'apply';
-      // add append p elemenst and button to div class name 'content'
-      divElement.append(imgElement, pElementOne, pElementTwo, Applybtn);
-      // append div to 'card'
+
+      const link = document.createElement('a');
+      link.href = internship.url;
+      link.target = '_blank'; // Opens the link in a new tab
+      link.classList.add('btn');
+      link.textContent = 'Apply';
+
+      divElement.append(imgElement, pElementOne, pElementTwo, link);
       card.appendChild(divElement);
       internshipContainer.appendChild(card);
   });

@@ -140,8 +140,10 @@
                 {{form.password2(class="form-control", placeholder="Confirm password")}}
                 
                  <!-- Create Account Button -->
-                {{ form.submit(class="button", value="Create Account")}}
-               
+                <!--{{ form.submit(class="button", value="Create Account")}}-->
+                <form action="{{ url_for('profile_page') }}" method = "post">
+                    <input type="submit" class="button" value="Create Account">
+                </form>
             </form>
           
         
