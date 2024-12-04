@@ -57,15 +57,19 @@ def profile_page():
 
     # distinguish by which form is submitted
     if form2.validate_on_submit() and form2.submit2.data:
-        # iterate through multiple jobs
-            # print(form2.title.data+"/n")
-            # print(form2.desc.data+"/n")
-            # print(user.id+"/n")
-            # print(form2['yearstart'])
+        print(request.form.get('monthstart'))
+        print(request.form.get('yearstart'))
+        print(request.form.get('monthend'))
+        print(request.form.get('yearend'))
         # create new job experience object
+        #use request.form.get to get form items based on select name
         new_exp = Experience(title=form2.title.data,
                             desc=form2.desc.data,
-                            user_id = user.id
+                            user_id = user.id,
+                            monthstart = request.form.get('monthstart'),
+                            yearstart = request.form.get('yearstart'),
+                            monthend = request.form.get('monthend'),
+                            yearend = request.form.get('yearend')
                             )
         db.session.add(new_exp)
         db.session.commit()

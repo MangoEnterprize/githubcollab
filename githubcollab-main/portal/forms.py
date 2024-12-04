@@ -47,7 +47,5 @@ class ExperienceForm(FlaskForm):
     title = StringField(label="Title" ,validators=[DataRequired()])
     desc = StringField(label="Desc",validators=[DataRequired()])
     company = StringField(label="Company")
-    month = StringField(label="Month")
-    year = IntegerField(label="Year")
     submit2 = SubmitField('submit')
     

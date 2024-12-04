@@ -205,6 +205,13 @@
     <div>
         <h4>{{ experience[0] }}</h4>
         <span>{{ experience[1] }}</span>
+        <p>From {{ experience[2] }} {{ experience[3]}} </p>
+
+        {% if experience[4] == None and experience[5] == None %}
+        <p> Until current </p>
+        {% else %}
+        <p>{{ experience[4] }} {{ experience[5]}}</p>
+        {% endif %}
     </div>
     {% endfor %}
     <hr>

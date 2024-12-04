@@ -51,10 +51,10 @@ class Experience(db.Model):
     company=db.Column(db.String(length=30), nullable=True)
     desc=db.Column(db.String(length=250), nullable=True)
 
-    monthstart=db.Column(db.Integer(), nullable=True)
+    monthstart=db.Column(db.String(length=30), nullable=True)
     yearstart=db.Column(db.Integer(), nullable=True)
 
-    monthend=db.Column(db.Integer(), nullable=True)
+    monthend=db.Column(db.String(length=30), nullable=True)
     yearend=db.Column(db.Integer(), nullable=True)
     
     user_id = db.Column(db.Integer, db.ForeignKey('user.id'), nullable=False)
@@ -62,7 +62,7 @@ class Experience(db.Model):
     # additional attribute accessible from each instance
     @property
     def format(self):
-        body = [self.title, self.desc]
+        body = [self.title, self.desc, self.monthstart, self.yearstart, self.monthend, self.yearend]
         return body
     
 

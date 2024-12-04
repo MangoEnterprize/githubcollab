@@ -96,13 +96,13 @@
                             <div class="jobend">
                             <label>Date Ended:</label>
                             
-                            <select>
-                                <option value="monthend" disabled selected>Month</option>
+                            <select name="monthend">
+                                <option value="" disabled selected>Month</option>
                                 {% for month in months %}
                                     <option value="{{ month }}">{{ month }}</option>
                                 {% endfor %}
                             </select>
-                            <select value="yearend">
+                            <select name="yearend">
                                 <option value="" disabled selected>Year</option>
                                 <!-- Add years as needed -->
                                 {% for year in years %}

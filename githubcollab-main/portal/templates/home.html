@@ -16,7 +16,7 @@
     {% block content %}
 
     <div class="home_body">
-    <main>
+    <!-- <main>
         <section class="hero">
             <h1>Uni-Portal</h1>
             <h2>Overview</h2>
@@ -36,7 +36,35 @@
             </div>
             <img src="{{ url_for('static', filename='student.png') }}" alt="Student illustration">
         </section>
-    </main>
+    </main> -->
+        <header>
+            <div class="nav">
+                <div class="logo">
+                    <img src="{{ url_for('static', filename='logo.png') }}" alt="Logo">
+                </div>
+                <div class="nav-links">
+                    <a href="#">Login</a>
+                    <a href="#">Sign Up</a>
+                </div>
+            </div>
+        </header>
+        <main>
+            <section class="hero">
+                <div class="content">
+                    <h1>Uni-Portal</h1>
+                    <p>Our digital gateway is designed to boost students on their academic and career paths. 
+                        Acting as a single-point solution, it provides countless resources to help students 
+                        discover employment prospects, connect with mentors, find learning materials, and search for internships.</p>
+                        <button class="cta-button">Get Started</button>
+                </div>
+            </section>
+        </main>
+    </body>
+
+
+
+                
+
 
     </div>
 
