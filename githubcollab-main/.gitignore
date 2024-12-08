@@ -1,3 +1,5 @@
-*/__pycache__
-/__pycache__
-*/.venv
+# Ignore virtual environment folder
+.venv/
+
+# Ignore all __pycache__ directories
+__pycache__/

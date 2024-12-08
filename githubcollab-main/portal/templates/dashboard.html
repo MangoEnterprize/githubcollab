@@ -12,6 +12,20 @@
     border-color: #bee5eb;
 }
 
+#profile{
+    border-radius: 100%;
+    background-color: #FFEB84;
+    height: 45px;
+    width: 45px;
+    display: flex;
+    size: 2rem;
+    align-items: center;
+    justify-content: center;
+    color: #000000;
+
+}
+
+
 .alert > button{
     background-color: transparent;
     border: 0px;
@@ -59,39 +73,64 @@
             font-family: Arial, sans-serif;
             background-color: #f8f8f8;
             display: flex;
-            justify-content: center;
-            align-items: center;
-            min-height: 100vh;
         }
 
         .sidebar {
-            width: 250px;
+            min-width: 300px;
             background-color: #fff;
             color: #333;
             display: flex;
             flex-direction: column;
-            align-items: center;
-            text-align: center;
+            /* align-items: center;
+            text-align: center; */
             padding-top: 20px;
-            position: fixed;
-            height: 100%;
-            top: 0;
-            left: 0;
+            min-height: 100vh;
+            background-color: #ffffff;
+            padding: 20px;
+            box-shadow: 2px 0 5px rgba(0, 0, 0, 0.1);
         }
 
+        .maincontent{
+           /* background: linear-gradient(to bottom, #ffffff, #add8e6); */
+           /* background-image: linear-gradient(to top, #a8edea 0%, #fed6e3 100%); */
+           background-image: url(../static/school.png);
+           background-size: 100%; /* Keeps the original image size */
+        background-repeat: repeat; /* Repeats the image to fill the space */
+        background-position: top left; /* Starts the image at the top-left corner */
+        background-attachment: fixed; /* Optional: Keeps the image fixed during scrolling */
+            width: 100%;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding-top: 30vh;
+            
+        }
+        /* .maincontent::before{
+           
+           background-image: url(../static/school.png);
+           background-size: cover;
+           background-position: center;
+           filter: blur(8px); 
+        } */
         .sidebar h2 {
             font-size: 1.5rem;
             margin-bottom: 10px;
+            align-self: center;
+        }
+
+        .sidebar h3{
+            margin-top: 20px;
+            margin-bottom: 1.5rem;
+            /* align-self: center; */
         }
 
         .sidebar p {
             font-size: 1.0rem;
-            margin-bottom: 40px;
+            /* margin-bottom: 1rem; */
             text-wrap: balance;
         }
         
         .sidebar hr {
-            width: 80%;
             border: none;
             border-top: 1px solid #ccc;
             margin: 10px 0;
@@ -180,49 +219,181 @@
             line-height: 1.5;
         }
 
+        #user{
+            display: flex;
+            flex-direction: row;
+            margin-bottom: 2rem;
+            margin-top: 2rem;
+            gap: 1rem;
+            align-items: center;
+        }
         .box-image {
             width: 100%;
+            border-radius: 10px;
             height: 100%;
             object-fit: cover; /* Ensure image covers the container */
-            filter: brightness(70%); /* Dim the image for better text visibility */
+            filter: brightness(85%); /* Dim the image for better text visibility */
             transition: filter 0.3s;
         }
+
+        .tabs {
+  margin: 10px 0;
+  display: flex;
+  gap: 10px;
+}
+
+/* side bar*/
+.tab {
+  flex: 1;
+  padding: 10px;
+  text-align: center;
+  background-color: #f3f3f3;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.tab .user{
+    padding: 50px;
+}
+
+#logo{
+    font-size: 1.5rem;
+    font-weight: bold;
+    color: #333333;
+    margin: 0;
+    padding: 0;
+}
+
+.active {
+  background-color: #e6e6ff;
+  font-weight: bold;
+  color: #7d5bff;
+}
+
+.info, .contract {
+  margin-top: 20px;
+}
+
+
+.Major{
+    margin-top: 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    align-items:start;
+    
+}
+
+.Experience{
+    margin-top: 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    align-items:start;
+}
+
+a{
+    text-decoration: none;
+    color: black;
+}
+
+.box{
+    background-color: rgba(255, 255, 255, .9);
+    padding: 2rem;
+    border-radius: 10px;
+    box-shadow: rgba(0, 0, 0, 0.25) 0px 25px 50px -12px;
+}
+
     </style>
 </head>
 <body>
 
+<!-- user information -->
+
 <div class="sidebar">
-    <h2>Your Profile</h2>
-    <hr>
-    <p>Your major is: {{ user.major }}</p>
-    <p>Your concentration is: {{ user.concentration }}</p>
-    <p>Your expected graduation is: {{ user.gradmonth }} {{user.gradyear}}</p>
 
-    <!-- loop through experience items -->
+    <p id="logo">Uni-Portal</p>
+    <!-- User profile here -->
+     <div id="user">
 
-    <h3>Experiences</h3>
-    {% for experience in experiences %}
-    <div>
-        <h4>{{ experience[0] }}</h4>
-        <span>{{ experience[1] }}</span>
-        <p>From {{ experience[2] }} {{ experience[3]}} </p>
-
-        {% if experience[4] == None and experience[5] == None %}
-        <p> Until current </p>
-        {% else %}
-        <p>{{ experience[4] }} {{ experience[5]}}</p>
-        {% endif %}
+        <span id="profile">
+            <span>
+            {{user.firstname[0]}}{{user.lastname[0]}}
+            </span>
+        </span>
+        <div id="name">
+            
+            <strong><p>{{user.firstname}} {{user.lastname}}</p></strong>
+            <p style="color: #777;">{{user.email_address}}</p>
+        </div>
+        
+    
     </div>
-    {% endfor %}
-    <hr>
+<hr>
+    <nav class="tabs">
+        <button class="tab"><a href="{{ url_for('profile_page') }}">Edit Profile</a></button>
+        <button class="tab"><a href="{{ url_for('logout_page') }}">Logout</a></button>
+    </nav>
 
-    <a href="{{ url_for('profile_page') }}">Edit Profile</a>
-    <!-- added logout url to logout user -->
-    <a href="{{ url_for('logout_page') }}">Logout</a>
+    <nav class="tabs user">
+        <button id="major-btn" class="tab active">Major</button>
+        <button id="experience-btn" class="tab">Experience</button>
+    </nav>
+
+    <hr>
+    <div class="major-section">
+        <h3>Degree Information</h3>
+        
+            <div style="line-height: 140%; margin-bottom: 1.5rem;">
+            <p style="color: #777; font-size: 17px;">Major</p>
+            <p><strong> {{ user.major }}</strong></p>
+            </div>
+            <!-- <p><strong>Concentration: </strong> {{ user.concentration }}</p>
+            <p><strong>Expected graduation: </strong> {{ user.gradmonth }} {{user.gradyear}}</p> -->
+            <div style="line-height: 140%; margin-bottom: 1.5rem;">
+                <p style="color: #777; font-size: 17px;">Concentration</p>
+                <p><strong> {{ user.concentration }}</strong></p>
+            </div>
+            <div style="line-height: 140%">
+                <p style="color: #777; font-size: 17px;">Expected graduation</p>
+                <p><strong> {{ user.gradmonth }} {{user.gradyear}}</strong></p>
+            </div>
+    
+    </div>
+  
+    <div class="experience-section" style="display: none;">
+        <h3>Work Information</h3>
+      {% for experience in experiences %}
+        <div style="line-height: 140%; margin-bottom: 1.5rem;">
+            <p style="color: #777; font-size: 17px;">Title</p>
+            <p><strong> {{ experience[0] }}</strong></p>
+        </div>
+        <div style="line-height: 140%; margin-bottom: 1.5rem;">
+            <p style="color: #777; font-size: 17px;">Description</p>
+            <p><strong>{{ experience[1] }}</strong></p>
+        </div>
+        <div style="line-height: 140%; margin-bottom: 2rem;">
+            <p style="color: #777; font-size: 17px;">Work From</p>
+            <p style="margin-bottom: 2rem;"><strong>{{ experience[2] }} {{ experience[3]}} - 
+        
+    
+          {% if experience[4] == None and experience[5] == None %}
+          Until current</strong></p>
+          {% else %}
+          {{ experience[4] }} {{ experience[5]}}</strong></p>
+          {% endif %}
+          <hr>
+        </div>
+      {% endfor %}
+ 
+    </div>
     
 </div>
 
-<div class="container">
+<div class="maincontent">
+
+    
     {%with messages = get_flashed_messages(with_categories=true)%}
       {% if messages %}
         {% for category, message in messages %}
@@ -235,9 +406,11 @@
         {% endfor %}
       {% endif %}
     {% endwith %}
+
+    <div class="box">
     <div class="header">
         <p>Student Dashboard</p>
-        <h1>Welcome, {{user.firstname}}</h1>
+        <h1 style="color: #381338;">Welcome, {{user.firstname}}</h1>
 
         <!-- Messages section handles error and success messages -->
       
@@ -265,7 +438,39 @@
         <div class="section">
             <p>Schedule a tutoring session</p>
     </div>
+    </div>
 </div>
+
+</div>
+
+<script>
+    // Function to switch sections
+    // Select buttons and sections
+const majorBtn = document.getElementById('major-btn');
+const experienceBtn = document.getElementById('experience-btn');
+const majorSection = document.querySelector('.major-section');
+const experienceSection = document.querySelector('.experience-section');
+
+// Add click event listeners
+majorBtn.addEventListener('click', () => {
+    majorSection.style.display = 'block';
+    experienceSection.style.display = 'none';
+
+    // Update active button styling
+    majorBtn.classList.add('active');
+    experienceBtn.classList.remove('active');
+});
+
+experienceBtn.addEventListener('click', () => {
+    experienceSection.style.display = 'block';
+    majorSection.style.display = 'none';
+
+    // Update active button styling
+    experienceBtn.classList.add('active');
+    majorBtn.classList.remove('active');
+});
+
+</script>
 
 </body>
 </html>

@@ -5,15 +5,18 @@ body {
     color: #333;
     margin: 0;
     padding: 0;
-    background-color: #f9f9f9;
+    background-color: transparent;
 }
 
 /* Hero Section */
 .hero {
-    background: linear-gradient(to bottom, rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.7)), url('{{ url_for("static", filename="hero-bg.jpg") }}') no-repeat center center/cover;
+    background: linear-gradient(to bottom, rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.7)), url('./Aerial_CHHS_Atkins_Clocktower.jpg');/*no-repeat center center/cover*/
+    background-position: center;
     color: white;
     text-align: center;
     padding: 100px 20px;
+    /*background-image: /*linear-gradient(to top, #F7F7F7 0%, #2E7D32;*/
+    background-size: cover;
 }
 
 .hero h1 {
@@ -34,22 +37,31 @@ body {
     justify-content: center;
     flex-wrap: wrap;
     padding: 20px;
+    margin-bottom: 4rem;
 }
 
 .card {
-    background: #fff;
+    background-image: #F7F7F7;
     border-radius: 10px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
     overflow: hidden;
     width: 300px;
     text-align: center;
     transition: transform 0.3s ease, box-shadow 0.3s ease;
+    box-shadow: 0 4px 20px rgba(0,0,0,0,1);
+    max-width: 1200px;
 }
+
+
 
 .card img {
     width: 100%;
     height: 200px;
     object-fit: cover;
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
+    border-bottom-right-radius: 0px;
+    border-bottom-left-radius: 0px;
 }
 
 .card-content {
@@ -72,35 +84,76 @@ body {
 }
 
 /* Subjects Section */
-.subject-selector {
-    background: #4CAF50;
-    color: white;
+.subject-section {
+    background-color: transparent;
+    /*color: #333;*/
     text-align: center;
-    padding: 20px;
-    margin: 20px 0;
+    padding: 50px 20px;
+    /*margin: 20px 0;*/
 }
 
-.subject-selector ul {
+.subject-card {
+    max-width: 350px;
+    background-color: #f4f4f4;
+    padding: 20px;
+    border-radius: 20px;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+    margin: 10px;
+    text-align: center;
+    transition: transform 0.3s, box-shadow 0.3s;
+    width: 100%;
+}
+
+.subjects {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 10px;
+    color: #333;
+}
+
+.subject-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+}
+
+.subjects h2 {
+    font-size: 2rem;
+    margin-bottom: 20px;
+    text-align: center;
+}
+.subject-section ul {
     list-style: none;
     padding: 0;
 }
 
-.subject-selector li {
+.subject-section li {
     margin: 10px 0;
     font-size: 1.2rem;
 }
 
 /* Form Section */
-.contact-form, .reservation-widget {
-    max-width: 600px;
-    margin: auto;
+.contact-form, .reservation-form {
+    max-width: 500px;
     padding: 20px;
     background: #fff;
-    border-radius: 10px;
+    border-radius: 20px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    flex: 1;
+    box-sizing: border-box;
+    border: 1px solid #ddd;
+    width: 100%;
 }
 
-.contact-form h2, .reservation-widget h2 {
+.form-container {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 4rem;
+    gap: 2rem;
+}
+
+.contact-form h2, .reservation-form h2 {
     text-align: center;
     margin-bottom: 20px;
 }
@@ -118,12 +171,14 @@ input, textarea, select, button {
 }
 
 button {
-    background-color: #4CAF50;
+    background-color: #9e0b0b;
     color: white;
     font-size: 1rem;
     cursor: pointer;
 }
 
 button:hover {
-    background-color: #45a049;
+    background-color: #9e0b0b;
+    font-weight: 600;
+    box-shadow: 0 4px 4px rgba(0, 0, 0, 0.2);
 }

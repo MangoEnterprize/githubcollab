@@ -1,3 +1,19 @@
+
+const checkbox = document.querySelector(".checkbox");
+            const jobend = document.querySelector(".jobend");
+
+            checkbox.addEventListener('click', e=>{
+                if (checkbox.checked) {
+                // Checkbox is checked
+                // hide end date
+                jobend.classList.add('hidden');
+                
+                } else {
+                    jobend.classList.remove('hidden');
+                }
+
+            })
+
 // Add event listener to the 'Add another Job' button
 document.querySelector('.add-job').addEventListener('click', function() {
     // Get the job experience container
@@ -25,35 +41,6 @@ document.querySelector('.add-job').addEventListener('click', function() {
     jobExperienceContainer.appendChild(spacer); // Insert the spacer after the new job experience
 });
 
-fetch('/submit-job-experience', {
-    method: 'POST',
-    headers: {
-        'Content-Type': 'application/json',
-    },
-    body: JSON.stringify(jobExperiences),
-})
-.then(response => response.json())
-.then(data => {
-    console.log('Success:', data);
-})
-.catch((error) => {
-    console.error('Error:', error);
-});
-
-fetch('/submit-major', {
-    method: 'POST',
-    headers: {
-        'Content-Type': 'application/json',
-    },
-    body: JSON.stringify(selectedMajor),
-})
-.then(response => response.json())
-.then(data => {
-    console.log('Success:', data);
-})
-.catch((error) => {
-    console.error('Error:', error);
-});
 
 // Add event listener to the 'Add more Volunteer Work' button
 document.querySelector('.add-volunteer').addEventListener('click', function() {

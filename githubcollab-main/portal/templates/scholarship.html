@@ -1,314 +1,227 @@
 {% extends 'base.html' %}
 
-
 {% block head %}
 <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Scholarships</title>
-    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='base.css') }}">
-    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='scholarships.css') }}">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Concert+One&family=Kaisei+HarunoUmi&display=swap" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css2?family=Concert+One&family=Kaisei+HarunoUmi:wght@400;700&display=swap" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css2?family=Concert+One&family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Kaisei+HarunoUmi:wght@400;700&display=swap" rel="stylesheet">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Scholarships</title>
+<link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='base.css') }}">
+<link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='scholarships.css') }}">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Concert+One&family=Kaisei+HarunoUmi&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Concert+One&family=Kaisei+HarunoUmi:wght@400;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Concert+One&family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Kaisei+HarunoUmi:wght@400;700&display=swap" rel="stylesheet">
 <script>
     const imageUrl = "{{ url_for('static', filename='icon.png') }}";
 </script>
-<script defer src="{{ url_for('static', filename='job.js') }}"></script>
+<script defer src="{{ url_for('static', filename='scholarship.js') }}"></script>
+
+
+<style>
+  /* Basic styling for the cards */
+  .card-container {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 20px;
+      justify-content: center;
+      margin: 20px;
+  }
+  .card {
+      border: 1px solid #ccc;
+      border-radius: 8px;
+      padding: 20px;
+      width: 300px;
+      text-align: center;
+      box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  }
+  .card img {
+      max-width: 50px;
+      margin-bottom: 10px;
+  }
+  .card h3 {
+      font-size: 1.5rem;
+      margin: 10px 0;
+  }
+  .card p {
+      font-size: 1rem;
+      color: #555;
+      margin: 5px 0;
+  }
+  .card a {
+      display: inline-block;
+      margin-top: 15px;
+      color: #007bff;
+      text-decoration: none;
+      font-weight: bold;
+  }
+  .card a:hover {
+      text-decoration: underline;
+  }
+  .filter-container {
+      text-align: center;
+      margin: 20px 0;
+  }
+  .filter-container select {
+      padding: 10px;
+      font-size: 1rem;
+  }
+  .categoryFilter{
+    border-radius: 5px;
+    border: 0px;
+  }
+</style>
+<script>
+  function filterByCategory() {
+      const selectedCategory = document.getElementById('categoryFilter').value.toLowerCase();
+      const cards = document.querySelectorAll('.card');
+
+      cards.forEach(card => {
+          const cardCategory = card.dataset.category.toLowerCase();
+
+          if (selectedCategory === 'all' || cardCategory === selectedCategory) {
+              card.style.display = 'block';
+          } else {
+              card.style.display = 'none';
+          }
+      });
+  }
+</script>
 
 {% endblock %}
 
-
 {% block content %}
-<main>
-   
-<section>
-    <div class="banner">
-        <p>Scholarship Search</p>
+<header class="hero-section">
+    <div class="hero-content">
+        <h1><span class="bold">SCHOLARSHIP SEARCH</span></h1>
+        <p>
+            Search scholarships, filter by categories such as academics, athletics, or specific types.
+        </p>
+        <!-- Filter Section -->
+        <!-- <div class="filter-container">
+            <button class="filter-btn">Filter ▼</button>
+            <div class="filter-dropdown">
+                <a href="#" data-value="All">All</a>
+                <a href="#" data-value="Minority">Minority</a>
+                <a href="#" data-value="Athletic">Athletic</a>
+                <a href="#" data-value="Academic">Academic</a>
+            </div>
+        </div> -->
     </div>
-    <div class="image-container">
-        <img src="{{ url_for('static', filename='icon.png') }}" alt="icon" class="resized-image">
+    <div class="hero-image">
+        <img src="{{ url_for('static', filename='icon.png') }}" alt="Smiling professional">
     </div>
-</section>
-
-<section>
-    <form class="radio-button">
-    
-        <button type="button" id="sort-by" class="sort-by">Sort By</button>
-        
-        <div class="radio-group">
-            
-            <div class="radio-item">
-                <input type="radio" value="Remote" name="options" id="Remote">
-                <label for="remote">Essay Required</label>
-            </div>
-            <div class="radio-item">
-                <input type="radio" value="Onsite" name="options" id="Onsite">
-                <label for="onsite">No Essay</label>
-            </div>
-        </div>
-    </form>
-</section>
-
-<section class="listing">
-    <h1>Scholarships</h1>
-    <div class="full">
-        <h3>Military</h3>
-        <div class="card-container">
-            <!-- <div class="card">
-                <img src="{{ url_for('static', filename='icon.png') }}" alt="icon">
-                <div class="content">
-                    <p>Remote Job 1</p>
-                    <p>Work from anywhere.</p>
-                    <input type="button" value="Apply" class="btn">
-                </div>
-            </div>
-            <div class="card">
-                <img src="{{ url_for('static', filename='icon.png') }}" alt="icon">
-                <div class="content">
-                    <p>Onsite Job 2</p>
-                    <p>Office-based opportunity.</p>
-                    <input type="button" value="Apply" class="btn">
-                </div>
-            </div> -->
-            
-        </div>
-    </div>
-    
-    <div class="part">
-        <h3>Athletics</h3>
-        <div class="card-container">
-            <!-- <div class="card">
-                <img src="{{ url_for('static', filename='icon.png') }}" alt="icon">
-                <div class="content">
-                    <p>Job 1</p>
-                    <p>Learn about hosting built for scale and reliability.</p>
-                    <input type="button" value="Apply" class="btn">
-                </div>
-                
-            </div>
-            <div class="card">
-                <img src="{{ url_for('static', filename='icon.png') }}" alt="icon">
-                <div class="content">
-                    <p>Job 1</p>
-                    <p>Learn about hosting built for scale and reliability.</p>
-                    <input type="button" value="Apply" class="btn">
-                </div>
-                
-            </div>
-            <div class="card">
-                <img src="{{ url_for('static', filename='icon.png') }}" alt="icon">
-                <div class="content">
-                    <p>Job 1</p>
-                    <p>Learn about hosting built for scale and reliability.</p>
-                    <input type="button" value="Apply" class="btn">
-                </div>
-                
-            </div> -->
-        </div>
-    </div>
-
-    <div class="internship">
-        <h3>First-Generation</h3>
-        <div class="card-container">
-            <!-- <div class="card">
-                <img src="{{ url_for('static', filename='icon.png') }}" alt="icon">
-                <div class="content">
-                    <p>Job 1</p>
-                    <p>Learn about hosting built for scale and reliability.</p>
-                    <input type="button" value="Apply" class="btn">
-                </div>
-                
-            </div>
-            <div class="card">
-                <img src="{{ url_for('static', filename='icon.png') }}" alt="icon">
-                <div class="content">
-                    <p>Job 1</p>
-                    <p>Learn about hosting built for scale and reliability.</p>
-                    <input type="button" value="Apply" class="btn">
-                </div>
-                
-            </div>
-            <div class="card">
-                <img src="{{ url_for('static', filename='icon.png') }}" alt="icon">
-                <div class="content">
-                    <p>Job 1</p>
-                    <p>Learn about hosting built for scale and reliability.</p>
-                    <input type="button" value="Apply" class="btn">
-                </div>
-                
-            </div> -->
-        </div>
-    </div>
-</section>
-
-
-</main>
-
-
-
-{% endblock%}
-
-<!-- <!DOCTYPE html>
-<html lang="en">
-<head>
-</head>
-<body>
-<header>
-    <h3>Uni-Portal</h3>
-    <nav>
-        <ul>
-            <li><a href="job.html">Profile</a></li>
-            <li><a href="job.html">Search</a></li>
-            <li><a href="job.html">Tutoring</a></li>
-        </ul>
-    </nav>
-
 </header>
 
-<main>
-   
-    <section class="title">
-        <div class="job-search">
-            <p>Job Search</p>
-        </div>
-        <div class="image-container">
-            <img src="{{ url_for('static', filename='icon.png') }}" alt="icon" class="resized-image">
-        </div>
-    </section>
+<body>
+<section class="services-section">
+    <h2>SCHOLARSHIPS WE ARE OFFERING</h2>
+    <p class="services-description">
+        Explore scholarships tailored to your needs and aspirations. Filter by categories for a focused search.
+    </p>
+    <br>
 
-    <section>
-        <form class="radio-button">
-        
-            <button class="sort-by">Sort By</button>
-            
-            <div class="radio-group">
-                <div class="radio-item">
-                    <input type="radio" value="Location" name="options">
-                    <label>Location</label>
-                </div>
-                <div class="radio-item">
-                    <input type="radio" value="On-campus" name="options">
-                    <label>On-campus</label>
-                </div>
-                <div class="radio-item">
-                    <input type="radio" value="Off-campus" name="options">
-                    <label>Off-campus</label>
-                </div>
+     <!-- Dropdown Filter -->
+     <div class="filter-container">
+      <label for="categoryFilter">Filter by Category:</label>
+      <select id="categoryFilter" onchange="filterByCategory()">
+          <option value="All">All</option>
+          <option value="Minority">Minority</option>
+          <option value="Athletic">Athletic</option>
+          <option value="Academic">Academic</option>
+      </select>
+  </div>
+
+  <div class="card-container">
+      {% for scholarship in scholarships %}
+      <div class="card" data-category="{{ scholarship['Category'] }}">
+        {% if scholarship['Category'] == 'Academic' %}
+          <span>📚</span>
+          {% endif %}
+        {% if scholarship['Category'] == 'Minority'  %}
+        <span>⭐</span>
+        {% endif %}
+        {% if scholarship['Category'] == 'Athletic'  %}
+        <span>👟</span>
+        {% endif %}
+          
+          <h3>{{ scholarship['Scholarship Name'] }}</h3>
+          <p><strong>Deadline:</strong> {{ scholarship['Deadline'] }}</p>
+          <p><strong>Amount:</strong> {{ scholarship['Amount'] }}</p>
+          <p><strong>Location:</strong> {{ scholarship['Location'] }}</p>
+          <p><strong>Years:</strong> {{ scholarship['Years'] }}</p>
+          <p>
+              {{ scholarship['Description'][:100] }}{% if scholarship['Description']|length > 100 %}...{% endif %}
+          </p>
+          <a href="{{ scholarship['Link'] }}" target="_blank">APPLY »</a>
+      </div>
+      {% endfor %}
+  </div>
+
+    <!-- <div id="scholarship-container">
+        {% if scholarships %}
+            {% for scholarship in scholarships %}
+            <div class="scholarship-card" data-category="{{ scholarship.Category }}">
+                <h4>{{ scholarship['Scholarship Name'] }}</h4>
+                <p><strong>Deadline:</strong> {{ scholarship.Deadline }}</p>
+                <p><strong>Amount:</strong> ${{ scholarship.Amount }}</p>
+                <p>{{ scholarship.Description }}</p>
+                <p><strong>Location:</strong> {{ scholarship.Location }}</p>
+                <p><strong>Eligibility:</strong> {{ scholarship.Years }}</p>
+                <a href="{{ scholarship.Link }}" target="_blank">Learn More</a>
             </div>
-        </form>
-    </section>
+            {% endfor %}
+        {% else %}
+            <p>No scholarships available at the moment. Please check back later.</p>
+        {% endif %}
+    </div> -->
 
-    <section class="listing">
-        <h1>Job Listing</h1>
-        <div class="full">
-            <h3>Full-Time</h3>
-            <div class="card-container">
-                <div class="card">
-                    <img src="{{ url_for('static', filename='icon.png') }}" alt="icon">
-                    <div class="content">
-                        <p>Job 1</p>
-                        <p>Learn about hosting built for scale and reliability.</p>
-                        <input type="button" value="Apply">
-                    </div>
-                    
-                </div>
-                <div class="card">
-                    <img src="{{ url_for('static', filename='icon.png') }}" alt="icon">
-                    <div class="content">
-                        <p>Job 1</p>
-                        <p>Learn about hosting built for scale and reliability.</p>
-                        <input type="button" value="Apply">
-                    </div>
-                </div>
-                <div class="card">
-                    <img src="{{ url_for('static', filename='icon.png') }}" alt="icon">
-                    <div class="content">
-                        <p>Job 1</p>
-                        <p>Learn about hosting built for scale and reliability.</p>
-                        <input type="button" value="Apply">
-                    </div>
-                </div>
-            </div>
-        </div>
-        
-        <div class="part">
-            <h3>Part-Time</h3>
-            <div class="card-container">
-                <div class="card">
-                    <img src="{{ url_for('static', filename='icon.png') }}" alt="icon">
-                    <div class="content">
-                        <p>Job 1</p>
-                        <p>Learn about hosting built for scale and reliability.</p>
-                        <input type="button" value="Apply">
-                    </div>
-                    
-                </div>
-                <div class="card">
-                    <img src="{{ url_for('static', filename='icon.png') }}" alt="icon">
-                    <div class="content">
-                        <p>Job 1</p>
-                        <p>Learn about hosting built for scale and reliability.</p>
-                        <input type="button" value="Apply">
-                    </div>
-                    
-                </div>
-                <div class="card">
-                    <img src="{{ url_for('static', filename='icon.png') }}" alt="icon">
-                    <div class="content">
-                        <p>Job 1</p>
-                        <p>Learn about hosting built for scale and reliability.</p>
-                        <input type="button" value="Apply">
-                    </div>
-                    
-                </div>
-            </div>
-        </div>
+</section>
 
-        <div class="internship">
-            <h3>Internship</h3>
-            <div class="card-container">
-                <div class="card">
-                    <img src="{{ url_for('static', filename='icon.png') }}" alt="icon">
-                    <div class="content">
-                        <p>Job 1</p>
-                        <p>Learn about hosting built for scale and reliability.</p>
-                        <input type="button" value="Apply">
-                    </div>
-                    
-                </div>
-                <div class="card">
-                    <img src="{{ url_for('static', filename='icon.png') }}" alt="icon">
-                    <div class="content">
-                        <p>Job 1</p>
-                        <p>Learn about hosting built for scale and reliability.</p>
-                        <input type="button" value="Apply">
-                    </div>
-                    
-                </div>
-                <div class="card">
-                    <img src="{{ url_for('static', filename='icon.png') }}" alt="icon">
-                    <div class="content">
-                        <p>Job 1</p>
-                        <p>Learn about hosting built for scale and reliability.</p>
-                        <input type="button" value="Apply">
-                    </div>
-                    
-                </div>
-            </div>
-        </div>
-    </section>
+<!-- <script>
+    // JavaScript for dropdown filtering functionality
+    const filterBtn = document.querySelector('.filter-btn');
+    const dropdown = document.querySelector('.filter-dropdown');
+    const dropdownOptions = document.querySelectorAll('.filter-dropdown a');
+    const scholarshipCards = document.querySelectorAll('.scholarship-card');
+
+    // Toggle dropdown visibility
+    filterBtn.addEventListener('click', () => {
+        dropdown.classList.toggle('show');
+    });
+
+    // Close dropdown when clicking outside
+    document.addEventListener('click', (e) => {
+        if (!filterBtn.contains(e.target) && !dropdown.contains(e.target)) {
+            dropdown.classList.remove('show');
+        }
+    });
+
+    // Filter scholarships by category
+    dropdownOptions.forEach(option => {
+        option.addEventListener('click', (e) => {
+            e.preventDefault();
+            const selectedCategory = option.getAttribute('data-value');
+            filterBtn.textContent = selectedCategory + ' ▼';
+            dropdown.classList.remove('show');
+
+            scholarshipCards.forEach(card => {
+                if (selectedCategory === 'All' || card.dataset.category === selectedCategory) {
+                    card.style.display = 'block';
+                } else {
+                    card.style.display = 'none';
+                }
+            });
+        });
+    });
+
+    // Smooth scrolling to scholarship section
+    document.getElementById("learn-more-btn").addEventListener("click", () => {
+        document.querySelector(".services-section").scrollIntoView({
+            behavior: "smooth"
+        });
+    });
+</script> -->
 
 
-</main>
-
-
-<footer>
-
-
-    <small>Copyright</small>
-
-</footer> 
 </body>
-</html> -->
+{% endblock %}

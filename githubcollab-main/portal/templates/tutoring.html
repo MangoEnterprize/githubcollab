@@ -11,7 +11,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Concert+One&family=Kaisei+HarunoUmi&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Concert+One&family=Kaisei+HarunoUmi:wght@400;700&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Concert+One&family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Kaisei+HarunoUmi:wght@400;700&display=swap" rel="stylesheet">
-    <script defer src="{{ url_for('static', filename='filter.js') }}"></script>
+    <script defer src="{{ url_for('static', filename='tutoring.js') }}"></script>
 
     
 
@@ -25,29 +25,64 @@
         <div class="hero-content">
             <h1>Achieve Your Best with Personalized Tutoring</h1>
             <p>One-on-one or group sessions to help you excel in your studies and reach your academic goals.</p>
+            
+        </div>
+        <div class="subject-section">
+            
+            <h2 style="padding-bottom: 2rem;">Subjects We Cover</h2>
+            <div class="subjects">
+                <div class="subject-card">
+                    <h3>Mathematics</h3>
+                    <p>Algebra, Calculus, Geometry</p>
+                </div>
+                <div class="subject-card">
+                    <h3>Science</h3>
+                    <p>Biology, Chemistry, Physics</p>
+                </div>
+                <div class="subject-card">
+                    <h3>Computer Science and Programming</h3>
+                </div>
+                <div class="subject-card">
+                    <h3>English</h3>
+                </div>
+                <div class="subject-card">
+                    <h3>History</h3>
+                </div>
+                <div class="subject-card">
+                    <h3>Test Preparation</h3>
+                </div>
+            </div>
         </div>
     </section>
+        <!--<ul class="subject-list">
+            <li>Mathematics (Algebra, Calculus, Geometry)</li>
+            <li>Science (Biology, Chemistry, Physics)</li>
+            <li>English (Writing, Reading Comprehension)</li>
+            <li>History</li>
+            <li>Computer Science and Programming</li>
+            <li>Test Preparation</li>
+        </ul> -->
 
-    <!-- utors Section -->
+    <!-- Tutors Section -->
     <section class="available-tutors">
-        <h2>Our Expert Tutors</h2>
+        <h2 style="text-align: center; padding: 2rem; font-size: 2rem;">Our Expert Tutors</h2>
         <div class="card-container">
             <div class="card">
-                <img src="{{ url_for('static', filename='tutor1.jpg') }}" alt="Tutor 1">
+                <img src="{{url_for('static', filename='johnathan.png') }}"class="card"/>
                 <div class="card-content">
                     <h3>John Doe</h3>
                     <p>Specialized in Math and Physics. Over 5 years of experience in tutoring high school and college students.</p>
                 </div>
             </div>
             <div class="card">
-                <img src="{{ url_for('static', filename='tutor2.jpg') }}" alt="Tutor 2">
+                <img src="{{ url_for('static', filename='jane.png') }}" alt="Tutor 2" class="card"/>
                 <div class="card-content">
                     <h3>Jane Smith</h3>
                     <p>Focused on English and Literature. Passionate about helping students enhance their writing skills.</p>
                 </div>
             </div>
             <div class="card">
-                <img src="{{ url_for('static', filename='tutor3.jpg') }}" alt="Tutor 3">
+                <img src="{{ url_for('static', filename='emily.png') }}" alt="Tutor 3" class="card">
                 <div class="card-content">
                     <h3>Emily Johnson</h3>
                     <p>Expert in Computer Science and Programming. Offers personalized lessons for beginners and advanced learners.</p>
@@ -55,68 +90,62 @@
             </div>
         </div>
     </section>
-
     <!-- Subjects Section -->
-    <section class="subject-selector">
-        <h2>Subjects We Cover</h2>
-        <ul class="subject-list">
-            <li>Mathematics (Algebra, Calculus, Geometry)</li>
-            <li>Science (Biology, Chemistry, Physics)</li>
-            <li>English (Writing, Reading Comprehension)</li>
-            <li>History</li>
-            <li>Computer Science and Programming</li>
-            <li>Test Preparation</li>
-        </ul>
-    </section>
 
     <!-- Contact Form Section -->
-    <section class="contact-form">
-        <h2>Contact Us</h2>
-        <form action="/submit_tutoring_request" method="POST">
-            <div class="form-group">
-                <label for="name">Your Name:</label>
-                <input type="text" id="name" name="name" placeholder="Enter your name" required>
-            </div>
-            <div class="form-group">
-                <label for="email">Your Email:</label>
-                <input type="email" id="email" name="email" placeholder="Enter your email" required>
-            </div>
-            <div class="form-group">
-                <label for="message">Your Request:</label>
-                <textarea id="message" name="message" rows="4" placeholder="Tell us about your needs" required></textarea>
-            </div>
-            <button type="submit">Submit</button>
-        </form>
-    </section>
+    <section class="form-container">
+        <div class="contact-form">
+            <h2>Contact Us</h2>
+            <form action="/submit_tutoring_request" method="POST">
+                <div class="form-group">
+                    <label for="name">Your Name:</label>
+                    <input type="text" id="name" name="name" placeholder="Enter your name" required>
+                </div>
+                <div class="form-group">
+                    <label for="email">Your Email:</label>
+                    <input type="email" id="email" name="email" placeholder="Enter your email" required>
+                </div>
+                <div class="form-group">
+                    <label for="message">Your Request:</label>
+                    <textarea id="message" name="message" rows="4" placeholder="Tell us about your needs" required></textarea>
+                </div>
+                <button type="submit">Submit</button>
+            </form>
+        </div>
 
     <!-- Reservation Widget Section -->
-    <div class="reservation-widget">
-        <h2>Make a Reservation</h2>
-        <form>
-            <div class="form-group">
-                <label for="date">Date:</label>
-                <input type="date" id="date" name="date">
-            </div>
-            <div class="form-group">
-                <label for="time">Time:</label>
-                <input type="time" id="time" name="time">
-            </div>
-            <div class="form-group">
-                <label for="subject">Subject:</label>
-                <select id="subject" name="subject" onchange="filterClasses()">
-                    <option value="Mathematics">Mathematics</option>
-                    <option value="Science">Science</option>
-                    <option value="English">English</option>
-                    <option value="History">History</option>
-                </select>
+        <div class="reservation-form">
+            <h2>Make a Reservation</h2>
+            <form>
+                <div class="form-group">
+                    <label for="date">Date:</label>
+                    <input type="date" id="date" name="date">
+                </div>
+                <div class="form-group">
+                    <label for="time">Time:</label>
+                    <input type="time" id="time" name="time">
+                </div>
+                <div class="form-group">
+                    <label for="subject">Subject:</label>
+                    <select id="subject" name="subject" onchange="filterClasses()">
+                        <option value="Mathematics">Mathematics</option>
+                        <option value="Science">Science</option>
+                        <option value="English">English</option>
+                        <option value="History">History</option>
+                        <option value="Computer Science and Programming">Computer Science/Programming</option>
+                    </select>
 
-                <label for="class">Class:</label>
-                <select id="class" name="class">
+                    <label for="class">Class:</label>
+                    <select id="class" name="class">
                     
-                </select>
-            </div>
-            <button type="submit">Reserve</button>
-        </form>
-    </div>
+                    </select>
+                </div>
+                <button type="submit">Reserve</button>
+            </form>
+        </div>
+    </section>
+
+
+    <script src="tutoring.js"></script>
 </main>
 {% endblock %}

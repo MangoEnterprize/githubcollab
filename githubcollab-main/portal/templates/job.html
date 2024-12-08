@@ -22,60 +22,126 @@
 
 {% block content %}
 
-
-<main>
-       
-    <section>
-        <div class="banner">
-            <p>Job Search</p>
-        </div>
-        <div class="image-container">
-            <img src="{{ url_for('static', filename='icon.png') }}" alt="icon" class="resized-image">
-        </div>
-    </section>
-
-    <section>
-        <form class="radio-button">
-        
-            <button type="button" id="sort-by" class="sort-by">Sort By</button>
-            
-            <div class="radio-group">
-                
-                <div class="radio-item">
-                    <input type="radio" value="Remote" name="options" id="Remote">
-                    <label for="remote">Remote</label>
-                </div>
-                <div class="radio-item">
-                    <input type="radio" value="Onsite" name="options" id="Onsite">
-                    <label for="onsite">Onsite</label>
-                </div>
-            </div>
-        </form>
-    </section>
-
-    <section class="listing">
-        <h1>Job Listing</h1>
-        <div class="full">
-            <h3>Full-Time</h3>
-            <div class="card-container">
+<header class="hero-section">
+    <div class="hero-content">
+        <h1><span class="bold">JOBS SEARCH</span></h1>
+        <p>
+            Search for part time & full time & internships, filter by onsite & remote.
+        </p>
+        <button class="learn-more-btn" id="learn-more-btn">Learn More</button>
+            <!-- Filter Section -->
+        <div class="filter-container">
+            <button class="filter-btn">All ▼</button>
+            <div class="filter-dropdown">
+            <a href="#" data-value="All">All</a>
+            <a href="#" data-value="Onsite">Onsite</a>
+            <a href="#" data-value="Remote">Remote</a>
             </div>
         </div>
-        
-        <div class="part">
-            <h3>Part-Time</h3>
-            <div class="card-container">
-            </div>
-        </div>
+    </div>
+    <div class="hero-image">
+      <img src="{{ url_for('static', filename='icon.png') }}" alt="Smiling professional">
+    </div>
+  </header>
 
-        <div class="internship">
-            <h3>Internship</h3>
-            <div class="card-container">
-            </div>
-        </div>
-    </section>
+<body>
+  <section class="services-section">
+    <h2>JOBS WE ARE OFFERING</h2>
+    <p class="services-description">
+      We develop an individual integrated solution for finding your jobs and select a unique set of filter for it, 
+      combining them with a single strategy and goal.
+    </p>
+    <br>
+
+    <h3>Full Time Job</h3>
+    <div class="services">
+    </div>
+
+    
+
+    <br>
+    
+    <h3>Part Time Job</h3>
+    <div class="services">
+    </div>
+
+    <br>
+
+    <h3>Internship</h3>
+    <div class="services">
+    </div>
+
+  </section>
+
+  <script>    // JavaScript for toggling dropdown visibility
+    const filterBtn = document.querySelector('.filter-btn');
+    const dropdown = document.querySelector('.filter-dropdown');
+    const dropdownOptions = document.querySelectorAll('.filter-dropdown a');
 
 
-</main>
+    filterBtn.addEventListener('click', () => {
+      dropdown.classList.toggle('show');
+    });
+
+    document.addEventListener('click', (e) => {
+      if (!filterBtn.contains(e.target) && !dropdown.contains(e.target)) {
+        dropdown.classList.remove('show');
+      }
+    });
+
+        // Replace button text when an option is clicked
+        dropdownOptions.forEach(option => {
+        option.addEventListener('click', (e) => {
+        e.preventDefault(); // Prevent default link behavior
+        const selectedValue = option.getAttribute('data-value');
+        filterBtn.textContent = selectedValue + ' ▼';
+        dropdown.classList.remove('show'); // Close dropdown after selection
+
+        // Apply the filter
+        filterJobs(selectedValue);
+      });
+    });
+
+    // Close dropdown when clicking outside
+    document.addEventListener('click', (e) => {
+      if (!filterBtn.contains(e.target) && !dropdown.contains(e.target)) {
+        dropdown.classList.remove('show');
+      }
+    });
+
+        // Filter jobs based on the selected location
+    function filterJobs(location) {
+    const allContainers = document.querySelectorAll(".services");
+
+    // Clear all job containers
+    allContainers.forEach(container => {
+        container.innerHTML = "";
+    });
+
+    // Filter and reload jobs
+    if (location === "Onsite" || location === "Remote") {
+        loadFullTimeJob(fullTimeJobs.filter(job => job.location === location));
+        loadPartTimeJob(partTimeJobs.filter(job => job.location === location));
+        loadInternship(internships.filter(job => job.location === location));
+    } else {
+        // If "All" is selected, reload all jobs
+        loadFullTimeJob(fullTimeJobs);
+        loadPartTimeJob(partTimeJobs);
+        loadInternship(internships);
+    }
+    }
+
+
+    //scrolling smooth
+    document.getElementById("learn-more-btn").addEventListener("click", () => {
+    document.querySelector(".services-section").scrollIntoView({
+        behavior: "smooth"
+    });
+    });
+
+    </script>
+
+</body>
 
 
 

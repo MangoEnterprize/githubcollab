@@ -5,6 +5,32 @@ from portal.forms import RegisterForm, LoginForm, ProfileForm, ExperienceForm
 from portal import db
 from flask_login import login_user, logout_user, login_required, current_user
 import calendar
+from markupsafe import Markup
+
+import csv  # Built-in CSV module
+import pandas as pd  # Optional: For advanced CSV handling
+
+
+# Using built-in csv module
+
+# Using pandas (optional, for larger datasets or complex manipulation)
+@app.route('/csv')
+def fetch_csv_pandas():
+    df = pd.read_csv('C:/Users/Lillian/githubcollab/githubcollab-main/portal/static/updated_scholarships.csv')
+    scholarships = df.to_dict(orient='records')
+
+    # Pass the scholarships data to the template
+    return render_template('test.html', scholarships=scholarships)
+
+
+# If user is not logged in, user default user maddie
+def getUser():
+    if not current_user.is_authenticated:
+        flash(f'Required login for this page is currently disabled. Using maddie as default', category='success')
+        user = User.query.filter_by(email_address="mbrow378@uncc.edu").first()
+    else:
+        user = User.query.filter_by(id=current_user.id).first()
+    return user
 
 # this is root url, can handle mulriple decorators
 @app.route('/') 
@@ -13,14 +39,12 @@ def home_page():
     
     return render_template('home.html')
 
-# TODO:needs to take logged in username
-@app.route('/about')
-def about_page():
-    return f'<h1>This is the about page of user</h1>'
-
 @app.route('/scholarship')
 def scholarship_page():
-    return render_template('scholarship.html')
+    df = pd.read_csv('C:/Users/Lillian/githubcollab/githubcollab-main/portal/static/updated_scholarships.csv')
+    scholarships = df.to_dict(orient='records')
+
+    return render_template('scholarship.html', scholarships=scholarships)
 
 
 @app.route('/jobs')
@@ -38,31 +62,32 @@ def tutoring_page():
 def jobs_page():
     return render_template('job.html')
 
+
+def updateMsg():
+    flash(f'Profile updated successfully', category='success')
+    flash(Markup('See changes in <a href="/dashboard">Dashboard</a>'),category='success')
+    db.session.commit()
+
 @app.route('/profile', methods=['GET', 'POST'])
 # @login_required
 def profile_page():
+    # TODO: edit experiences and add multiple experiences at once
     majors = ['Computer Science', 'English', 'Business Administration', 'Psychology', 'Biology', 'Engineering', 'Art', 'History', 'Mathematics']
     years = [ 2013, 2014, 2015, 2016, 2017, 2018, 2019, 2020, 2021, 2022, 2023, 2024]
     months = list(calendar.month_name)[1:]
+    concentrations = ['Software Engineering', 'Systems', 'AI and Game Development']
 
     form = ProfileForm()
     form2 = ExperienceForm()
+    form3 = ExperienceForm()
 
-    if not current_user.is_authenticated:
-        flash(f'Required login for this page is currently disabled. For testing purposes, we are using maddie as the user. Work in progress', category='success')
-        user = User.query.filter_by(email_address="mbrow378@uncc.edu").first()
-    else:
-        user = User.query.filter_by(id=current_user.id).first()
+    # set user to maddie if not logged in
+    user = getUser()
     #   User.query.get_or_404(current_user.id)
 
-    # distinguish by which form is submitted
+    #Job experience submission
     if form2.validate_on_submit() and form2.submit2.data:
-        print(request.form.get('monthstart'))
-        print(request.form.get('yearstart'))
-        print(request.form.get('monthend'))
-        print(request.form.get('yearend'))
-        # create new job experience object
-        #use request.form.get to get form items based on select name
+        #use request.form.get to get form select items based on name attribute
         new_exp = Experience(title=form2.title.data,
                             desc=form2.desc.data,
                             user_id = user.id,
@@ -75,46 +100,60 @@ def profile_page():
         db.session.commit()
 
         flash(f'New experience added to profile', category='success')
+
+        if form2.errors: #if no errors from validation
+            for error in form2.errors.values():
+                flash(f'Error during submission: {error[0]}', category='danger')
         # return redirect(url_for('dashboard_page'))
+
+    # Add volunteer exp
+    if form3.validate_on_submit() and form3.submit3.data:
+        #use request.form.get to get form items based on select name
+        new_exp = Experience(title=form3.title.data,
+                            desc=form3.desc.data,
+                            user_id = user.id,
+                            company = form3.company.data,
+                            monthstart = request.form.get('volunteermonth'),
+                            yearstart = request.form.get('volunteeryear'),
+                            )
+        db.session.add(new_exp)
+        updateMsg()
+
+        if form3.errors: #if no errors from validation
+            for error in form3.errors.values():
+                flash(f'Error during submission: {error[0]}', category='danger')
 
     # Update information
-    if form.validate_on_submit() and form.submit.data:
-        user.major=form.major.data
-        # user.concentration=form.concentration.data
-        # user.gradmonth=form.gradmonth.data
-        # user.gradyear=form.gradyear.data
+    elif form.validate_on_submit() and form.submit.data:
+        user.major=form.major.data  
+        updateMsg()
         
-        db.session.commit()
-
-        flash(f'Profile updated successfully', category='success')
-        # return redirect(url_for('dashboard_page'))
+        # Errors
+        if form.errors: #if no errors from validation
+            for error in form.errors.values():
+                flash(f'Error during submission: {error[0]}', category='danger')
     
+    elif request.method == 'POST' and 'Concentration' in request.form:
+        user.concentration = request.form['Concentration']
+        updateMsg()
 
-    # Errors
-    if form.errors: #if no errors from validation
-        for error in form.errors.values():
-            flash(f'Error during submission: {error[0]}', category='danger')
-
-    if form2.errors: #if no errors from validation
-        for error in form2.errors.values():
-            flash(f'Error during submission: {error[0]}', category='danger')
+    elif request.method == 'POST' and 'gradyear' in request.form or 'gradmonth' in request.form:
+        user.gradyear = request.form['gradyear']
+        user.gradmonth = request.form['gradmonth']
+        updateMsg()
     
-    return render_template('profile.html', form=form, majors=majors, form2=form2, years=years, months=months, user=user)
+    return render_template('profile.html', form=form, majors=majors, form2=form2, years=years, months=months, user=user, concentrations=concentrations, form3=form3)
 
 # User must be logged in to access dashboard
 @app.route('/dashboard')
 # @login_required
 def dashboard_page():
 
-    if not current_user.is_authenticated:
-        flash(f'Required login for this page is currently disabled. For testing purposes, we are using maddie as the user', category='success')
-        user = User.query.filter_by(email_address="mbrow378@uncc.edu").first()
-        experiences = (Experience.query.filter_by(user_id=user.id)).all()
-    else:
-        user = User.query.filter_by(id=current_user.id).first()
-        experiences = (Experience.query.filter_by(user_id=current_user.id)).all()
-        # loop through experiences calling the formatting function
-        experiences = [x.format for x in experiences]
+    user = getUser()
+    experiences = (Experience.query.filter_by(user_id=user.id)).all()
+    
+    # loop through experiences calling the formatting function
+    experiences = [x.format for x in experiences]
 
     return render_template('dashboard.html', experiences=experiences, user=user)
 

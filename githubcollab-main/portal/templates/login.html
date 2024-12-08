@@ -72,9 +72,19 @@
         }
 
         .logo {
-            height: 24px;
+            /*height: 24px;
             width: auto;
             margin-right: 8px;
+            font-size: 24px;*/
+            color: #0073e6;
+            margin: top left;
+            height: 60px;
+        }
+
+        .logo img {
+            height: 60px;
+            width: auto;
+            display: block;
         }
 
         /* Header Styles */
@@ -164,7 +174,9 @@
 
     <div>
         <a href="{{ url_for('home_page') }}" class="header">
-            <h1 class="title">Uni-Portal</h1>
+            <!--<h1 class="title">Uni-Portal</h1> -->
+            <img src="{{url_for('static', filename='icon.png')}}" alt="Logo" class="logo">
+            <!--<img src="{{url_for('static', filename='icon.png')}}" alt="Logo"> -->
     </a>
 
 

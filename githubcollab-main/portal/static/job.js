@@ -20,7 +20,7 @@ const fullTimeJobs = [
   {
     "title": "UX Designer",
     "description": "Design intuitive and user-friendly interfaces, conduct user research, and work closely with developers to ensure seamless implementation.",
-    "location": "Onsite",
+    "location": "Remote",
     "url": "https://www.glassdoor.com/job-listing/graphic-front-end-ux-designer-cgr-creative-JV_IC1138644_KO0,29_KE30,42.htm?jl=1008485362643&utm_campaign=google_jobs_apply&utm_source=google_jobs_apply&utm_medium=organic"
   }
 ];
@@ -80,7 +80,8 @@ const internships = [
 ];
 
 // select all containers
-const allContainers = document.querySelectorAll('.card-container');
+const allContainers = document.querySelectorAll('.services');
+const list = ["📱","💡","⚙️"];
 
 // Load scholarships on page load
 document.addEventListener("DOMContentLoaded", () => {
@@ -96,98 +97,93 @@ function loadFullTimeJob(fullTimeJobs) {
   const fullTimeContainer = allContainers[0];
   fullTimeContainer.innerHTML = ""; // Clear any existing jobs
 
-  fullTimeJobs.forEach(fullTimeJob => {
-      const card = document.createElement("div");
-      card.classList.add("card", fullTimeJob.location);
+  fullTimeJobs.forEach((fullTimeJob, index) => {
+    const card = document.createElement("div");
+    card.classList.add("service-box", fullTimeJob.location);
 
-      // Create a div with the class name 'content'
-      const divElement = document.createElement('div');
-      divElement.classList.add('content');
+    // Create a div with the class name 'service-icon'
+    const divElement = document.createElement("div");
+    divElement.classList.add("service-icon");
+    divElement.textContent = list[index % list.length];
 
-      // Create img element
-      const imgElement = document.createElement('img');
-      imgElement.src = imageUrl; // Ensure 'imageUrl' is defined or replace it with a specific image URL
+    // Create title, description, and apply link
+    const title = document.createElement("h3");
+    title.textContent = fullTimeJob.title;
+    const description = document.createElement("p");
+    description.textContent = fullTimeJob.description;
 
-      // Create two p elements
-      const pElementOne = document.createElement('p');
-      pElementOne.textContent = fullTimeJob.title;
-      const pElementTwo = document.createElement('p');
-      pElementTwo.textContent = fullTimeJob.description;
+    const ApplyLink = document.createElement("a");
+    ApplyLink.textContent = "APPLY »";
+    ApplyLink.classList.add("apply");
+    ApplyLink.href = fullTimeJob.url; // Use the hyperlink from the job object
+    ApplyLink.target = "_blank"; // Open link in a new tab
 
-      // Create anchor element as a button
-      const ApplyLink = document.createElement('a');
-      ApplyLink.classList.add('btn');
-      ApplyLink.textContent = 'Apply';
-      ApplyLink.href = fullTimeJob.url;
-      ApplyLink.target = '_blank'; // Open link in a new tab
-
-      // Append p elements and anchor to the div with class 'content'
-      divElement.append(imgElement, pElementOne, pElementTwo, ApplyLink);
-
-      // Append the content div to the card
-      card.appendChild(divElement);
-      fullTimeContainer.appendChild(card);
+    // Append elements to the card
+    card.append(divElement, title, description, ApplyLink);
+    fullTimeContainer.append(card);
   });
 }
 
 // Function to dynamically load part-time jobs
 function loadPartTimeJob(partTimeJobs) {
   const partTimeContainer = allContainers[1];
+  partTimeContainer.innerHTML = ""; // Clear any existing jobs
 
-  partTimeJobs.forEach(partTimeJob => {
-      const card = document.createElement("div");
-      card.classList.add("card", partTimeJob.location);
+  partTimeJobs.forEach((partTimeJob, index) => {
+    const card = document.createElement("div");
+    card.classList.add("service-box", partTimeJob.location);
 
-      const divElement = document.createElement('div');
-      divElement.classList.add('content');
+    // Create a div with the class name 'service-icon'
+    const divElement = document.createElement("div");
+    divElement.classList.add("service-icon");
+    divElement.textContent = list[index % list.length];
 
-      const imgElement = document.createElement('img');
-      imgElement.src = imageUrl;
+    // Create title, description, and apply link
+    const title = document.createElement("h3");
+    title.textContent = partTimeJob.title;
+    const description = document.createElement("p");
+    description.textContent = partTimeJob.description;
 
-      const pElementOne = document.createElement('p');
-      pElementOne.textContent = partTimeJob.title;
-      const pElementTwo = document.createElement('p');
-      pElementTwo.textContent = partTimeJob.description;
+    const ApplyLink = document.createElement("a");
+    ApplyLink.textContent = "APPLY »";
+    ApplyLink.classList.add("apply");
+    ApplyLink.href = partTimeJob.url; // Use the hyperlink from the job object
+    ApplyLink.target = "_blank"; // Open link in a new tab
 
-      const ApplyLink = document.createElement('a');
-      ApplyLink.classList.add('btn');
-      ApplyLink.textContent = 'Apply';
-      ApplyLink.href = partTimeJob.url;
-      ApplyLink.target = '_blank';
-
-      divElement.append(imgElement, pElementOne, pElementTwo, ApplyLink);
-      card.appendChild(divElement);
-      partTimeContainer.appendChild(card);
+    // Append elements to the card
+    card.append(divElement, title, description, ApplyLink);
+    partTimeContainer.append(card);
   });
 }
 
 // Function to dynamically load internships
 function loadInternship(internships) {
   const internshipContainer = allContainers[2];
+  internshipContainer.innerHTML = ""; // Clear any existing jobs
 
-  internships.forEach(internship => {
-      const card = document.createElement("div");
-      card.classList.add("card", internship.location);
+  internships.forEach((internship, index) => {
+    const card = document.createElement("div");
+    card.classList.add("service-box", internship.location);
 
-      const divElement = document.createElement('div');
-      divElement.classList.add('content');
+    // Create a div with the class name 'service-icon'
+    const divElement = document.createElement("div");
+    divElement.classList.add("service-icon");
+    divElement.textContent = list[index % list.length];
 
-      const imgElement = document.createElement('img');
-      imgElement.src = imageUrl;
+    // Create title, description, and apply link
+    const title = document.createElement("h3");
+    title.textContent = internship.title;
+    const description = document.createElement("p");
+    description.textContent = internship.description;
 
-      const pElementOne = document.createElement('p');
-      pElementOne.textContent = internship.title;
-      const pElementTwo = document.createElement('p');
-      pElementTwo.textContent = internship.description;
+    const ApplyLink = document.createElement("a");
+    ApplyLink.textContent = "APPLY »";
+    ApplyLink.classList.add("apply");
+    ApplyLink.href = internship.url; // Use the hyperlink from the job object
+    ApplyLink.target = "_blank"; // Open link in a new tab
 
-      const ApplyLink = document.createElement('a');
-      ApplyLink.classList.add('btn');
-      ApplyLink.textContent = 'Apply';
-      ApplyLink.href = internship.url;
-      ApplyLink.target = '_blank';
-
-      divElement.append(imgElement, pElementOne, pElementTwo, ApplyLink);
-      card.appendChild(divElement);
-      internshipContainer.appendChild(card);
+    // Append elements to the card
+    card.append(divElement, title, description, ApplyLink);
+    internshipContainer.append(card);
   });
 }

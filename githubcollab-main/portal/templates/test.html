@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Scholarships</title>
+    <style>
+        /* Basic styling for the cards */
+        .card-container {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 20px;
+            justify-content: center;
+            margin: 20px;
+        }
+        .card {
+            border: 1px solid #ccc;
+            border-radius: 8px;
+            padding: 20px;
+            width: 300px;
+            text-align: center;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        }
+        .card img {
+            max-width: 50px;
+            margin-bottom: 10px;
+        }
+        .card h3 {
+            font-size: 1.5rem;
+            margin: 10px 0;
+        }
+        .card p {
+            font-size: 1rem;
+            color: #555;
+            margin: 5px 0;
+        }
+        .card a {
+            display: inline-block;
+            margin-top: 15px;
+            color: #007bff;
+            text-decoration: none;
+            font-weight: bold;
+        }
+        .card a:hover {
+            text-decoration: underline;
+        }
+        .filter-container {
+            text-align: center;
+            margin: 20px 0;
+        }
+        .filter-container select {
+            padding: 10px;
+            font-size: 1rem;
+        }
+    </style>
+    <script>
+        function filterByCategory() {
+            const selectedCategory = document.getElementById('categoryFilter').value.toLowerCase();
+            const cards = document.querySelectorAll('.card');
+
+            cards.forEach(card => {
+                const cardCategory = card.dataset.category.toLowerCase();
+
+                if (selectedCategory === 'all' || cardCategory === selectedCategory) {
+                    card.style.display = 'block';
+                } else {
+                    card.style.display = 'none';
+                }
+            });
+        }
+    </script>
+</head>
+<body>
+    <h1>Available Scholarships</h1>
+
+    <!-- Dropdown Filter -->
+    <div class="filter-container">
+        <label for="categoryFilter">Filter by Category:</label>
+        <select id="categoryFilter" onchange="filterByCategory()">
+            <option value="All">All</option>
+            <option value="Minority">Minority</option>
+            <option value="Athletic">Athletic</option>
+            <option value="Academic">Academic</option>
+        </select>
+    </div>
+
+    <div class="card-container">
+        {% for scholarship in scholarships %}
+        <div class="card" data-category="{{ scholarship['Category'] }}">
+            <img src="/static/scholarship_icon.png" alt="Scholarship Icon">
+            <h3>{{ scholarship['Scholarship Name'] }}</h3>
+            <p><strong>Deadline:</strong> {{ scholarship['Deadline'] }}</p>
+            <p><strong>Amount:</strong> {{ scholarship['Amount'] }}</p>
+            <p><strong>Location:</strong> {{ scholarship['Location'] }}</p>
+            <p><strong>Years:</strong> {{ scholarship['Years'] }}</p>
+            <p>
+                {{ scholarship['Description'][:100] }}{% if scholarship['Description']|length > 100 %}...{% endif %}
+            </p>
+            <a href="{{ scholarship['Link'] }}" target="_blank">APPLY »</a>
+        </div>
+        {% endfor %}
+    </div>
+</body>
+</html>

@@ -22,7 +22,7 @@ class User(db.Model, UserMixin):
     #profile details
     major=db.Column(db.String(length=30), nullable=True)
     concentration=db.Column(db.String(length=30), nullable=True)
-    gradmonth=db.Column(db.Integer(), nullable=True)
+    gradmonth=db.Column(db.String(length=30), nullable=True)
     gradyear=db.Column(db.Integer(), nullable=True)
     
     #define relationship between models
